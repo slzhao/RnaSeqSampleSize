@@ -1,16 +1,16 @@
 ##' est_count_dispersion
-##' 
+##'
 ##' A function to estitamete the gene read count and dispersion distribution of RNA-seq data.
-##' 
+##'
 ##' A function to estitamete the gene read count and dispersion distribution of RNA-seq data.
-##' 
+##'
 ##' @param counts numeric matrix of read counts.
 ##' @param group vector or factor giving the experimental group/condition for each sample/library.
 ##' @param subSampleNum number of samples used to estitamete distribution.
 ##' @param minAveCount Only genes with avarage read counts above this value are used in the estimation of distribution.
 ##' @param convertId logical, whether to convert th gene Id into entrez gene Id. If set as True, then dataset and filters parameter should also be set.
 ##' @inheritParams convertIdOneToOne
-##' @return A DEGlist from edgeR package. 
+##' @return A DEGlist from edgeR package.
 ##' @importFrom edgeR DGEList calcNormFactors estimateCommonDisp estimateTagwiseDisp
 ##' @export
 ##' @examples counts<-matrix(sample(1:1000,6000,replace=TRUE),ncol=6)
@@ -22,7 +22,7 @@ est_count_dispersion<-function(counts,group=rep(1,NCOL(counts)),subSampleNum=20,
 	countsSub<-counts[,subSample]
 	groupSub<-group[subSample]
 	countsSub<-countsSub[which(rowMeans(counts)>=minAveCount),]
-	
+
 	y<-DGEList(countsSub, group=groupSub )
 	y <- calcNormFactors(y)
 	y <- estimateCommonDisp(y, verbose=TRUE)
@@ -37,11 +37,11 @@ est_count_dispersion<-function(counts,group=rep(1,NCOL(counts)),subSampleNum=20,
 }
 
 ##' est_power_distribution
-##' 
+##'
 ##' A function to estitamete the power for differential expression analysis of RNA-seq data.
-##' 
+##'
 ##' A function to estitamete the power for differential expression analysis of RNA-seq data.
-##' 
+##'
 ##' @param n Numer of samples.
 ##' @param repNumber Number of genes used in estimation of read counts and dispersion distribution.
 ##' @param dispersionDigits Digits of dispersion.
@@ -79,21 +79,21 @@ est_power_distribution<-function(n,f=0.1,m=10000,m1=100, w=1, rho=2,repNumber=10
 			selectedGeneFilterByCount=selectedGeneFilterByCount,removedGene0Power=removedGene0Power)
 	dispersionDistribution<-temp$selectedDispersion
 	countDistribution<-temp$selectedCount
-	
+
 	#determin alpha from most consertive power
 	phi0<-temp$maxDispersionDistribution
 	lambda0<-max(min(countDistribution),1)
 	leastPower<-est_power(n=n, w=w, rho=rho,lambda0=lambda0,phi0=phi0)
 	alpha<-leastPower*m1*f/((m-m1)*(1-f))
-	
+
 	#power distribution
 	powerDistribution<-est_power_distribution_root(n=n,alpha=alpha,w=w, rho=rho,dispersionDistribution=dispersionDistribution,countDistribution=countDistribution)
-	
+
 	#Add removed genes as 0 power
 	if (removedGene0Power) {
 		powerDistribution<-c(powerDistribution,rep(0,(temp$inputGeneNumber-length(powerDistribution))))
 	}
-	
+
 	if (storeProcess) {
 		return(list(power=powerDistribution,count=countDistribution,dispersion=dispersionDistribution))
 	} else {
@@ -131,7 +131,7 @@ selecteGeneByName<-function(selectedGenes,distributionObject) {
 }
 
 selecteGeneByPathway<-function(distributionObject,species="hsa",pathway="00010") {
-	selectedGenes<-keggLink("genes",paste0(species,pathway))
+	selectedGenes<-keggLink(species,paste0(species,pathway))
 	selectedGenes<-gsub(paste0(species,":"),"",selectedGenes)
 	if ("converted.entrezgene" %in% names(distributionObject)) {
 		result<-which(distributionObject$converted.entrezgene %in% selectedGenes)
@@ -146,7 +146,7 @@ selecteGeneByPathway<-function(distributionObject,species="hsa",pathway="00010")
 
 selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigits,minAveCount,maxAveCount,seed,selectedGenes,pathway,species,countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE,removedGene0Power=TRUE) {
 	distributionInPackage<-data(package="RnaSeqSampleSizeData")$results[,"Item"]
-	
+
 	if (is.character(distributionObject)) { #distributionInPackage
 		if (distributionObject %in% distributionInPackage) {
 			data(list=distributionObject)
@@ -159,10 +159,10 @@ selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigi
 			stop(paste0("The distributionObject is not a DGEList. Please use est_count_dispersion function to estimate distribution"))
 		}
 	}
-	
+
 	#if minAveCount < distributionObject min count, make minAveCount as distributionObject min count
 	minAveCount<-max(1,minAveCount,min(round(distributionObject$pseudo.counts.mean)))
-	
+
 	#Process libSize and Filter genes by count
 	if (missing(libSize)) {
 		libSize<-distributionObject$pseudo.lib.size
@@ -175,11 +175,11 @@ selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigi
 		genesLargerThanMinCount<-which(distributionObject$pseudo.counts.mean>=minAveCount)
 	}
 	distributionObject$pseudo.counts.mean[distributionObject$pseudo.counts.mean>=maxAveCount]<-maxAveCount
-	
+
 	#Dispersion distribution
 	dispersionDistribution<-round(distributionObject$tagwise.dispersion,dispersionDigits)
 	dispersionDistribution[dispersionDistribution==0]<-10^-dispersionDigits
-	
+
 	#selectedGenes or not
 	if (!missing(pathway) | !missing(selectedGenes)) {
 		if (!missing(pathway)) {
@@ -210,7 +210,7 @@ selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigi
 		selectedGenes<-sample(genesLargerThanMinCount,repNumber)
 		maxDispersionDistribution<-max(dispersionDistribution[selectedGenes])
 	}
-	
+
 	#return selected genes' distribution
 	countDistribution<-distributionObject$pseudo.counts.mean[selectedGenes]
 #	countDistribution[countDistribution==0]<-1

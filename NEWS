@@ -1,10 +1,16 @@
+CHANGES IN VERSION 1.9.1 2017-08-03
+------------------------------------
+
+BUG FIXES
+
+    o Fix a bug about estimating genes in pathway power in est_power_distribution function, which was caused by update of KEGG web site.
+
 CHANGES IN VERSION 0.99.8 2015-04-12
 ------------------------------------
 
 BUG FIXES
 
     o Fix a bug in example of optimize_parameter function, which was caused by update of heatmap3 package. Thanks Dan.
-
 
 CHANGES IN VERSION 0.99.7 2015-04-06
 ------------------------------------
@@ -19,7 +25,7 @@ CHANGES IN VERSION 0.99.5 2015-04-06
 SIGNIFICANT USER-VISIBLE CHANGES
 
     o Minor changes for genes with less than 1 read count;
- 
+
 CHANGES IN VERSION 0.99.4
 -------------------------
 

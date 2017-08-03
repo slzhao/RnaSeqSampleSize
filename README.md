@@ -6,18 +6,24 @@ RnaSeqSampleSize
 * [Example](#example)
 
 <a name="Introduction"/>
-# Introduction #
+
+# Introduction
+
 Sample size estimation is the most important issue in the design of RNA sequencing experiments. However, thousands of genes are quantified and tested for differential expression simultaneously in RNA-seq experiments. The false discovery rate for statistic tests should be controlled. At the same time, the thousands of genes have widely distributed read counts and dispersions, which were often estimated by experience or set at the most conservative values in previous sample size estimation methods. As a result, the estimated sample size will be inaccurate or over-estimated.
 
 To solve these issues, we developed a sample size estimation method based on the distributions of gene read counts and dispersions from real data. Datasets from the user's preliminary experiments or the Cancer Genome Atlas (TCGA) can be used as reference. The read counts and their related dispersions will be selected randomly from the reference based on their distributions, and from that, the power and sample size will be estimated and summarized.
 
 <a name="web"/>
-# User friendly web interface #
+
+# User friendly web interface
+
 A user friendly web interface for RnaSeqSampleSize package is provided at [CQS website](http://cqs.mc.vanderbilt.edu/shiny/RnaSeqSampleSize/). Most of the features in Example section can be found in this website.
 
 
 <a name="download"/>
-# Download and install #
+
+# Download and install
+
 You can download and install RnaSeqSampleSize package from [github](https://github.com/slzhao/RnaSeqSampleSize) by the following commands.
 
 	#Running the following codes in your R
@@ -26,7 +32,9 @@ You can download and install RnaSeqSampleSize package from [github](https://gith
     install_github("slzhao/RnaSeqSampleSize")
 
 <a name="example"/>
-# Example #
+
+# Example
+
 After you have installed RnaSeqSampleSize package. You can enter R and use following R codes to view documents and perform examples for it.
 	
 	#Load package
