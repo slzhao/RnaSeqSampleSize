@@ -1,7 +1,7 @@
 Package: RnaSeqSampleSize
 Type: Package
 Title: RnaSeqSampleSize
-Version: 1.13.0
+Version: 1.14.0
 Date: 2017-08-03
 Author: Shilin Zhao, Chung-I Li, Yan Guo, Quanhu Sheng, Yu Shyr
 Maintainer: Shilin Zhao <zhaoshilin@gmail.com>
