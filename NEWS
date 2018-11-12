@@ -1,3 +1,10 @@
+CHANGES IN VERSION 1.15.1 2018-11-12
+------------------------------------
+
+BUG FIXES
+
+    o Fix a bug in power estiamtion (cumsumBorder.cpp), which make results incorrect when k not equal to one.
+
 CHANGES IN VERSION 1.9.1 2017-08-03
 ------------------------------------
 
