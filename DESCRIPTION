@@ -1,7 +1,7 @@
 Package: RnaSeqSampleSize
 Type: Package
 Title: RnaSeqSampleSize
-Version: 1.15.1
+Version: 1.15.2
 Date: 2017-08-03
 Author: Shilin Zhao, Chung-I Li, Yan Guo, Quanhu Sheng, Yu Shyr
 Maintainer: Shilin Zhao <zhaoshilin@gmail.com>
@@ -21,6 +21,6 @@ VignetteBuilder: knitr
 Suggests:
     BiocStyle,
     knitr
-biocViews: ExperimentalDesign, Sequencing, RNASeq, GeneExpression,
+biocViews: ImmunoOncology, ExperimentalDesign, Sequencing, RNASeq, GeneExpression,
     DifferentialExpression
 RoxygenNote: 5.0.1
