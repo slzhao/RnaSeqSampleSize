@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // cumsumBorder
 NumericVector cumsumBorder(NumericVector x, double border);
-RcppExport SEXP RnaSeqSampleSize_cumsumBorder(SEXP xSEXP, SEXP borderSEXP) {
+RcppExport SEXP _RnaSeqSampleSize_cumsumBorder(SEXP xSEXP, SEXP borderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -16,4 +16,19 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(cumsumBorder(x, border));
     return rcpp_result_gen;
 END_RCPP
+}
+
+RcppExport SEXP generateA2Fx(SEXP, SEXP, SEXP);
+RcppExport SEXP myDnbinom2(SEXP, SEXP, SEXP, SEXP);
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_RnaSeqSampleSize_cumsumBorder", (DL_FUNC) &_RnaSeqSampleSize_cumsumBorder, 2},
+    {"generateA2Fx", (DL_FUNC) &generateA2Fx, 3},
+    {"myDnbinom2",   (DL_FUNC) &myDnbinom2,   4},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_RnaSeqSampleSize(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

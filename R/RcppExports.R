@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 cumsumBorder <- function(x, border) {
-    .Call('RnaSeqSampleSize_cumsumBorder', PACKAGE = 'RnaSeqSampleSize', x, border)
+    .Call('_RnaSeqSampleSize_cumsumBorder', PACKAGE = 'RnaSeqSampleSize', x, border)
 }
 

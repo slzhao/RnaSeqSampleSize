@@ -1,3 +1,10 @@
+CHANGES IN VERSION 1.19.1 2020-09-30
+------------------------------------
+
+BUG FIXES
+
+    o Fix a bug in est_power_distribution, which make results incorrect when power is very large.
+    
 CHANGES IN VERSION 1.15.1 2018-11-12
 ------------------------------------
 

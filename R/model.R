@@ -31,6 +31,9 @@ modelPower<-function(model, n=10,w=1, rho=2, lambda0=5, phi0=1, error=0.001) {
 	aNCol<-q0_u-q0_l+1
 	
 	if (!is.na(modelX1)) {
+	  if (modelX1==Inf) {#all elements (including count==1) significant in building model, return power=1
+	    return(1)
+	  }
 		y<-round(modelX1*(q0_l:q0_u)+modelIntercept1)
 		y[y<q1_l]<-q1_l
 		y[y>q1_u]<-aNRow+q1_l-1
@@ -39,6 +42,9 @@ modelPower<-function(model, n=10,w=1, rho=2, lambda0=5, phi0=1, error=0.001) {
 	}
 	
 	if (!is.na(modelX2)) {
+	  if (modelX2==Inf) {#all elements (including count==1) significant in building model, return power=1
+	    return(1)
+	  }
 		y<-round(modelX2*(q0_l:q0_u)+modelIntercept2)
 		y[y>q1_u]<-q1_u
 		y[y<q1_l]<-aNRow+q1_l-1
@@ -54,6 +60,7 @@ generateModel<-function(lambda0=c(1,5,10,20),n, w=1,k=1, rho=2.0, phi0=1, alpha=
 	X2<-NULL
 	Y1<-NULL
 	Y2<-NULL
+	minEstimatedPowerWithLambda0=1
 	for (i in 1:length(lambda0)) {		
 		temp<-est_power_root(n=n, w=w,k=k, rho=rho, lambda0=lambda0[i], phi0=phi0, alpha=alpha, error=error,returnDetail=TRUE)
 		result[[i]]<-temp[["matrix"]]
@@ -61,10 +68,12 @@ generateModel<-function(lambda0=c(1,5,10,20),n, w=1,k=1, rho=2.0, phi0=1, alpha=
 		X2<-c(X2,temp[["X2"]])
 		Y1<-c(Y1,temp[["Y1"]])
 		Y2<-c(Y2,temp[["Y2"]])
+		minEstimatedPowerWithLambda0=min(minEstimatedPowerWithLambda0,temp$power)
 	}
 	
 	if (showMessage) {
-		maxRange<-max(c(X1,X2,Y1,Y2),na.rm=TRUE)
+	  #maxRange<-max(c(X1,X2,Y1,Y2),na.rm=TRUE)
+	  maxRange<-max(as.integer(c(colnames(temp$matrix),row.names(temp$matrix))))
 		maxRange<-maxRange+maxRange/5
 		plot(c(0,maxRange),c(0,maxRange),type="l",xlab="q0",ylab="q1",main=paste("n=",n,"; rho=",rho,"; phi=",phi0,sep=""),lty=2)
 		
@@ -80,8 +89,10 @@ generateModel<-function(lambda0=c(1,5,10,20),n, w=1,k=1, rho=2.0, phi0=1, alpha=
 		}
 		legend("bottomright",legend=c(paste("Counts=",lambda0,sep="")),lwd=2,col=rainbow(length(result)),bty="n")
 	}
-	
-	if (length(X1)>3) {
+	if (minEstimatedPowerWithLambda0>=0.96) { #all elements in all lambda0 matirx are significant, return Inf so modelPower function will return power=1
+	  modelX1<-Inf
+	  modelIntercept1<-Inf
+	}	else if (length(X1)>3) {
 		model<-lm(Y1~X1)
 		modelIntercept1<-model$coefficients[1]
 		modelX1<-model$coefficients[2]
@@ -95,7 +106,10 @@ generateModel<-function(lambda0=c(1,5,10,20),n, w=1,k=1, rho=2.0, phi0=1, alpha=
 		modelIntercept1<-NA
 	}
 	
-	if (length(X2)>3) {
+	if (minEstimatedPowerWithLambda0>=0.96) { #all elements in all lambda0 matirx are significant, return Inf so modelPower function will return power=1
+	  modelX2<-Inf
+	  modelIntercept2<-Inf
+	}	else if (length(X2)>3) {
 		model<-lm(Y2~X2)
 		modelIntercept2<-model$coefficients[1]
 		modelX2<-model$coefficients[2]

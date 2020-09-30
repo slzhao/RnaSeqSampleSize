@@ -22,7 +22,9 @@ est_power<-function(n, w=1, rho=2, lambda0=5, phi0=1,alpha=0.05,f,m=20000,m1=200
 		}
 	} else {#alpha power
 		power<-est_power_root(n=n, w=w, rho=rho, lambda0=lambda0, phi0=phi0, alpha=alpha)
-		return(power+0.8)
+		#beacuse est_power_root is returning (power-(1-beta)), which can be used in uniroot.integer for fdr based power estimation. 
+		#If using it directly for alpha based power, need +0.8 to get correct power as default value for beta is 0.2. 
+		return(power+0.8) 
 	}
 }
 
@@ -84,9 +86,12 @@ est_power_root<-function(n,k=1, w=1, rho=2.0, lambda0=5, phi0=1, beta=0.2, alpha
 		}
 		colnames(b)<-q0_l:q0_u
 		row.names(b)<-q1_l:q1_u
-		
+
+		#beacuse est_power_root is used in uniroot.integer for fdr based power estimation, in which difference between estimated power and desired power is used to get a number most close to 0 
+		#So it need to return (power-(1-beta)), where 1-beta is desired power
 #		return(list(matrix=b,X1=X1,X2=X2,Y1=Y1,Y2=Y2,power=a-(1-beta)))
-		return(list(matrix=b,X1=X1[X1!=q0_l & X1!=q0_u & Y1!=q1_l & Y1!=q1_u],X2=X2[X2!=q0_l & X2!=q0_u & Y2!=q1_l & Y2!=q1_u],Y1=Y1[X1!=q0_l & X1!=q0_u & Y1!=q1_l & Y1!=q1_u],Y2=Y2[X2!=q0_l & X2!=q0_u & Y2!=q1_l & Y2!=q1_u],power=a-(1-beta)))
+		return(list(matrix=b,X1=X1[X1!=q0_l & X1!=q0_u & Y1!=q1_l & Y1!=q1_u],X2=X2[X2!=q0_l & X2!=q0_u & Y2!=q1_l & Y2!=q1_u],Y1=Y1[X1!=q0_l & X1!=q0_u & Y1!=q1_l & Y1!=q1_u],Y2=Y2[X2!=q0_l & X2!=q0_u & Y2!=q1_l & Y2!=q1_u],
+		            power=a,powerForUnirootFdr=a-(1-beta)))
 	} else {
 		return(a-(1-beta))
 	}
