@@ -36,4 +36,3 @@ A function to estitamete the gene read count and dispersion distribution of RNA-
 counts<-matrix(sample(1:1000,6000,replace=TRUE),ncol=6)
 est_count_dispersion(counts=counts,group=rep(0,6))
 }
-

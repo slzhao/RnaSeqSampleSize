@@ -4,8 +4,8 @@
 \alias{optimize_parameter}
 \title{optimize_parameter}
 \usage{
-optimize_parameter(fun = est_power, opt1, opt2, opt1Value, opt2Value, main,
-  ...)
+optimize_parameter(fun = est_power, opt1, opt2, opt1Value, opt2Value,
+  main, ...)
 }
 \arguments{
 \item{fun}{function to be optimized, can be est_power, sample_size.}
@@ -39,4 +39,3 @@ result<-optimize_parameter(fun=est_power,opt1="n",opt2="lambda0",opt1Value=c(3,5
 result<-optimize_parameter(fun=sample_size,opt1="lambda0",opt2="phi0",opt1Value=c(1,3,5),opt2Value=c(1.5,2,3),power=0.8)
 }
 }
-

@@ -5,10 +5,11 @@
 \title{sample_size_distribution}
 \usage{
 sample_size_distribution(power = 0.8, m = 10000, m1 = 100, f = 0.1,
-  k = 1, w = 1, rho = 2, showMessage = FALSE, storeProcess = FALSE,
-  distributionObject, libSize, minAveCount = 5, maxAveCount = 2000,
-  repNumber = 100, dispersionDigits = 1, seed = 123, selectedGenes,
-  pathway, species = "hsa", countFilterInRawDistribution = TRUE,
+  k = 1, w = 1, rho = 2, showMessage = FALSE,
+  storeProcess = FALSE, distributionObject, libSize, minAveCount = 5,
+  maxAveCount = 2000, repNumber = 100, dispersionDigits = 1,
+  seed = 123, selectedGenes, pathway, species = "hsa",
+  countFilterInRawDistribution = TRUE,
   selectedGeneFilterByCount = FALSE)
 }
 \arguments{
@@ -70,4 +71,3 @@ A function to estitamete the sample size based on read counts and dispersion dis
 sample_size_distribution(power=0.8,f=0.01,distributionObject="TCGA_READ",repNumber=5,showMessage=TRUE)
 }
 }
-

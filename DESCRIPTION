@@ -23,5 +23,4 @@ Suggests:
     knitr
 biocViews: ImmunoOncology, ExperimentalDesign, Sequencing, RNASeq, GeneExpression,
     DifferentialExpression
-RoxygenNote: 5.0.1
-PackageStatus: Deprecated
+RoxygenNote: 6.1.1

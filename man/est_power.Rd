@@ -4,8 +4,8 @@
 \alias{est_power}
 \title{est_power}
 \usage{
-est_power(n, w = 1, rho = 2, lambda0 = 5, phi0 = 1, alpha = 0.05, f,
-  m = 20000, m1 = 200)
+est_power(n, w = 1, rho = 2, lambda0 = 5, phi0 = 1, alpha = 0.05,
+  f, m = 20000, m1 = 200)
 }
 \arguments{
 \item{n}{Numer of samples.}
@@ -36,4 +36,3 @@ A function to estitamete the power for differential expression analysis of RNA-s
 n<-63;rho<-2;lambda0<-5;phi0<-0.5;f<-0.01
 est_power(n=n, rho=rho, lambda0=lambda0, phi0=phi0,f=f)
 }
-

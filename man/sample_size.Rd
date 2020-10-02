@@ -4,8 +4,8 @@
 \alias{sample_size}
 \title{sample_size}
 \usage{
-sample_size(power = 0.8, m = 20000, m1 = 200, f = 0.1, k = 1, w = 1,
-  rho = 2, lambda0 = 5, phi0 = 1, showMessage = FALSE,
+sample_size(power = 0.8, m = 20000, m1 = 200, f = 0.1, k = 1,
+  w = 1, rho = 2, lambda0 = 5, phi0 = 1, showMessage = FALSE,
   storeProcess = FALSE)
 }
 \arguments{
@@ -44,4 +44,3 @@ A function to estitamete the sample size for differential expression analysis of
 power<-0.8;rho<-2;lambda0<-5;phi0<-0.5;f<-0.01
 sample_size(power=power, f=f,rho=rho, lambda0=lambda0, phi0=phi0)
 }
-

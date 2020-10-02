@@ -6,10 +6,10 @@
 \usage{
 est_power_distribution(n, f = 0.1, m = 10000, m1 = 100, w = 1,
   rho = 2, repNumber = 100, dispersionDigits = 1, distributionObject,
-  libSize, minAveCount = 5, maxAveCount = 2000, seed = 123, selectedGenes,
-  pathway, species = "hsa", storeProcess = FALSE,
-  countFilterInRawDistribution = TRUE, selectedGeneFilterByCount = FALSE,
-  removedGene0Power = TRUE)
+  libSize, minAveCount = 5, maxAveCount = 2000, seed = 123,
+  selectedGenes, pathway, species = "hsa", storeProcess = FALSE,
+  countFilterInRawDistribution = TRUE,
+  selectedGeneFilterByCount = FALSE, removedGene0Power = TRUE)
 }
 \arguments{
 \item{n}{Numer of samples.}
@@ -76,4 +76,3 @@ powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="
 mean(powerDistribution$power)
 }
 }
-

@@ -4,9 +4,9 @@
 \alias{plot_power_curve}
 \title{plot_power_curve}
 \usage{
-plot_power_curve(result, cexLegend = 1, type = "b", xlab = "Sample Size",
-  ylab = "Power", pch = 16, lwd = 3, las = 1, cex = 1.5,
-  main = "Power Curve", col = "red")
+plot_power_curve(result, cexLegend = 1, type = "b",
+  xlab = "Sample Size", ylab = "Power", pch = 16, lwd = 3,
+  las = 1, cex = 1.5, main = "Power Curve", col = "red")
 }
 \arguments{
 \item{result}{the result of \code{\link{sample_size}} or \code{\link{est_power_curve}} function. The storeProcess parameter should be set as True when performing \code{\link{sample_size}} function. If you want to plot more than one curves in the same figure, the results from \code{\link{sample_size}} function should first be combined into a new list. At most five curves were allowed in one figure.}
@@ -47,4 +47,3 @@ result1<-sample_size(rho=2,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,show
 result2<-sample_size(rho=4,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,showMessage=TRUE,storeProcess=TRUE)
 plot_power_curve(list(result1,result2))
 }
-
