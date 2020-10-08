@@ -4,13 +4,29 @@
 \alias{sample_size_distribution}
 \title{sample_size_distribution}
 \usage{
-sample_size_distribution(power = 0.8, m = 10000, m1 = 100, f = 0.1,
-  k = 1, w = 1, rho = 2, showMessage = FALSE,
-  storeProcess = FALSE, distributionObject, libSize, minAveCount = 5,
-  maxAveCount = 2000, repNumber = 100, dispersionDigits = 1,
-  seed = 123, selectedGenes, pathway, species = "hsa",
+sample_size_distribution(
+  power = 0.8,
+  m = 10000,
+  m1 = 100,
+  f = 0.1,
+  k = 1,
+  w = 1,
+  rho = 2,
+  showMessage = FALSE,
+  storeProcess = FALSE,
+  distributionObject,
+  libSize,
+  minAveCount = 5,
+  maxAveCount = 2000,
+  repNumber = 100,
+  dispersionDigits = 1,
+  seed = 123,
+  selectedGenes,
+  pathway,
+  species = "hsa",
   countFilterInRawDistribution = TRUE,
-  selectedGeneFilterByCount = FALSE)
+  selectedGeneFilterByCount = FALSE
+)
 }
 \arguments{
 \item{power}{Power to detecte prognostic genes.}

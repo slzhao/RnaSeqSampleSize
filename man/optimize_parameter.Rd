@@ -4,8 +4,15 @@
 \alias{optimize_parameter}
 \title{optimize_parameter}
 \usage{
-optimize_parameter(fun = est_power, opt1, opt2, opt1Value, opt2Value,
-  main, ...)
+optimize_parameter(
+  fun = est_power,
+  opt1,
+  opt2,
+  opt1Value,
+  opt2Value,
+  main,
+  ...
+)
 }
 \arguments{
 \item{fun}{function to be optimized, can be est_power, sample_size.}

@@ -4,8 +4,16 @@
 \alias{est_power_curve}
 \title{est_power_curve}
 \usage{
-est_power_curve(n, w = 1, rho = 2, lambda0 = 5, phi0 = 1,
-  alpha = 0.05, f = 0.05, ...)
+est_power_curve(
+  n,
+  w = 1,
+  rho = 2,
+  lambda0 = 5,
+  phi0 = 1,
+  alpha = 0.05,
+  f = 0.05,
+  ...
+)
 }
 \arguments{
 \item{n}{Numer of samples.}

@@ -4,9 +4,19 @@
 \alias{plot_power_curve}
 \title{plot_power_curve}
 \usage{
-plot_power_curve(result, cexLegend = 1, type = "b",
-  xlab = "Sample Size", ylab = "Power", pch = 16, lwd = 3,
-  las = 1, cex = 1.5, main = "Power Curve", col = "red")
+plot_power_curve(
+  result,
+  cexLegend = 1,
+  type = "b",
+  xlab = "Sample Size",
+  ylab = "Power",
+  pch = 16,
+  lwd = 3,
+  las = 1,
+  cex = 1.5,
+  main = "Power Curve",
+  col = "red"
+)
 }
 \arguments{
 \item{result}{the result of \code{\link{sample_size}} or \code{\link{est_power_curve}} function. The storeProcess parameter should be set as True when performing \code{\link{sample_size}} function. If you want to plot more than one curves in the same figure, the results from \code{\link{sample_size}} function should first be combined into a new list. At most five curves were allowed in one figure.}
@@ -14,7 +24,7 @@ plot_power_curve(result, cexLegend = 1, type = "b",
 \item{cexLegend}{the cex for legend.}
 
 \item{type}{1-character string giving the type of plot desired.  The
-    following values are possible, for details, see \code{\link{plot}}:
+    following values are possible, for details, see \code{\link[graphics]{plot}}:
     \code{"p"} for points, \code{"l"} for lines,
     \code{"b"} for both points and lines,
     \code{"c"} for empty points joined by lines,
@@ -35,7 +45,7 @@ plot_power_curve(result, cexLegend = 1, type = "b",
 
 \item{cex}{A numerical value giving the amount by which plotting text and symbols should be magnified relative to the default.}
 
-\item{main}{a main title for the plot, see also \code{\link{title}}.}
+\item{main}{a main title for the plot, see also \code{\link[graphics]{title}}.}
 
 \item{col}{The line color.}
 }

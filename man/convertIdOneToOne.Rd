@@ -4,9 +4,13 @@
 \alias{convertIdOneToOne}
 \title{convertId}
 \usage{
-convertIdOneToOne(x, dataset = "hsapiens_gene_ensembl",
-  filters = "uniprotswissprot", attributes = c(filters, "entrezgene"),
-  verbose = FALSE)
+convertIdOneToOne(
+  x,
+  dataset = "hsapiens_gene_ensembl",
+  filters = "uniprotswissprot",
+  attributes = c(filters, "entrezgene_id"),
+  verbose = FALSE
+)
 }
 \arguments{
 \item{x}{the Ids need to be converted.}
@@ -29,6 +33,6 @@ A function to convert ID based on the biomaRt package.
 A function to convert ID based on the biomaRt package..
 }
 \examples{
-x<-c("Q04837","P0C0L4","P0C0L5","O75379","Q13068","A2MYD1","P60709","P30462","P30475","P30479")
+x<-c("Q04837","P0C0L4","P0C0L5","O75379","Q13068","A2MYD1")
 convertIdOneToOne(x,filters="uniprotswissprot",verbose=TRUE)
 }

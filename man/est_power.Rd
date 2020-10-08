@@ -4,8 +4,17 @@
 \alias{est_power}
 \title{est_power}
 \usage{
-est_power(n, w = 1, rho = 2, lambda0 = 5, phi0 = 1, alpha = 0.05,
-  f, m = 20000, m1 = 200)
+est_power(
+  n,
+  w = 1,
+  rho = 2,
+  lambda0 = 5,
+  phi0 = 1,
+  alpha = 0.05,
+  f,
+  m = 20000,
+  m1 = 200
+)
 }
 \arguments{
 \item{n}{Numer of samples.}

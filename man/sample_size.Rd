@@ -4,9 +4,19 @@
 \alias{sample_size}
 \title{sample_size}
 \usage{
-sample_size(power = 0.8, m = 20000, m1 = 200, f = 0.1, k = 1,
-  w = 1, rho = 2, lambda0 = 5, phi0 = 1, showMessage = FALSE,
-  storeProcess = FALSE)
+sample_size(
+  power = 0.8,
+  m = 20000,
+  m1 = 200,
+  f = 0.1,
+  k = 1,
+  w = 1,
+  rho = 2,
+  lambda0 = 5,
+  phi0 = 1,
+  showMessage = FALSE,
+  storeProcess = FALSE
+)
 }
 \arguments{
 \item{power}{Power to detecte prognostic genes.}

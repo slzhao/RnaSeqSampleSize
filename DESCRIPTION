@@ -1,21 +1,21 @@
 Package: RnaSeqSampleSize
 Type: Package
 Title: RnaSeqSampleSize
-Version: 1.19.1
+Version: 1.19.2
 Date: 2020-09-30
 Author: Shilin Zhao, Chung-I Li, Yan Guo, Quanhu Sheng, Yu Shyr
 Maintainer: Shilin Zhao <zhaoshilin@gmail.com>
 Description: RnaSeqSampleSize package provides a sample size calculation method
     based on negative binomial model and the exact test for assessing
-    differential expression analysis of RNA-seq data
+    differential expression analysis of RNA-seq data.
 License: GPL (>= 2)
 LazyLoad: yes
 LazyData: yes
 Depends:
-    R (>= 2.10),
+    R (>= 3.5.0),
     RnaSeqSampleSizeData
 Imports:
-    biomaRt,edgeR,heatmap3,matlab,KEGGREST,Rcpp (>= 0.11.2)
+    biomaRt,edgeR,heatmap3,matlab,KEGGREST,methods,Rcpp (>= 0.11.2)
 LinkingTo: Rcpp
 VignetteBuilder: knitr
 Suggests:
@@ -23,4 +23,5 @@ Suggests:
     knitr
 biocViews: ImmunoOncology, ExperimentalDesign, Sequencing, RNASeq, GeneExpression,
     DifferentialExpression
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
+Encoding: UTF-8

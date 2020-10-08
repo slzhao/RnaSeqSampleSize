@@ -4,9 +4,15 @@
 \alias{est_count_dispersion}
 \title{est_count_dispersion}
 \usage{
-est_count_dispersion(counts, group = rep(1, NCOL(counts)),
-  subSampleNum = 20, minAveCount = 1, convertId = FALSE,
-  dataset = "hsapiens_gene_ensembl", filters = "hgnc_symbol")
+est_count_dispersion(
+  counts,
+  group = rep(1, NCOL(counts)),
+  subSampleNum = 20,
+  minAveCount = 1,
+  convertId = FALSE,
+  dataset = "hsapiens_gene_ensembl",
+  filters = "hgnc_symbol"
+)
 }
 \arguments{
 \item{counts}{numeric matrix of read counts.}

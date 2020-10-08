@@ -1,3 +1,10 @@
+CHANGES IN VERSION 1.19.2 2020-10-02
+------------------------------------
+
+BUG FIXES
+
+    o Change codes to make the package pass all Rcmd check with R 4.0
+    
 CHANGES IN VERSION 1.19.1 2020-09-30
 ------------------------------------
 
