@@ -32,7 +32,7 @@ sample_size<-function(power=0.8,m=20000, m1=200, f=0.1, k=1,w=1, rho=2, lambda0=
 	r1<-m1 * power
 	beta<-1-power
 	alpha_star<-r1*f/((m-m1)*(1-f))
-	z_alpha<-qnorm(1-alpha_star/2, lower.tail=T)
+	z_alpha<-qnorm(1-alpha_star/2, lower.tail=TRUE)
 	z_beta<-qnorm(power, lower.tail=TRUE)
 	n_w<-( ( z_alpha + z_beta )^2* (1 + rho/w +phi0*lambda0*(1+rho^2)) )/ ( (rho-1)^2*lambda0 )
 	
@@ -79,11 +79,10 @@ sample_size<-function(power=0.8,m=20000, m1=200, f=0.1, k=1,w=1, rho=2, lambda0=
 ##' @inheritParams est_power_distribution
 ##' @return Estimate sample size or a list including parameters and sample size in the process.
 ##' @export
-##' @examples \dontrun{
+##' @examples
 ##' #Please note here the parameter repNumber was very small (5) to make the example code faster.
 ##' #We suggest repNumber should be at least set as 100 in real analysis.
 ##' sample_size_distribution(power=0.8,f=0.01,distributionObject="TCGA_READ",repNumber=5,showMessage=TRUE)
-##' }
 sample_size_distribution<-function(power=0.8,m=10000, m1=100, f=0.1, k=1,w=1, rho=2,showMessage=FALSE,storeProcess=FALSE,distributionObject,libSize,minAveCount=5,maxAveCount=2000,repNumber=100,dispersionDigits=1,seed=123,selectedGenes,pathway,species="hsa",countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE){
 	
 	r1<-m1 * power

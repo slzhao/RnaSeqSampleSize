@@ -49,6 +49,9 @@ plot_power_curve(
 
 \item{col}{The line color.}
 }
+\value{
+A power curve plot.
+}
 \description{
 A function to plot power curves based on the result of \code{\link{sample_size}} or \code{\link{est_power_curve}} function.
 }

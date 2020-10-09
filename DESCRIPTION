@@ -15,7 +15,8 @@ Depends:
     R (>= 3.5.0),
     RnaSeqSampleSizeData
 Imports:
-    biomaRt,edgeR,heatmap3,matlab,KEGGREST,methods,Rcpp (>= 0.11.2)
+    biomaRt,edgeR,heatmap3,matlab,KEGGREST,methods,grDevices, graphics, stats, 
+    utils,Rcpp (>= 0.11.2)
 LinkingTo: Rcpp
 VignetteBuilder: knitr
 Suggests:

@@ -33,6 +33,8 @@ A function to convert ID based on the biomaRt package.
 A function to convert ID based on the biomaRt package..
 }
 \examples{
+\dontrun{
 x<-c("Q04837","P0C0L4","P0C0L5","O75379","Q13068","A2MYD1")
 convertIdOneToOne(x,filters="uniprotswissprot",verbose=TRUE)
+}
 }

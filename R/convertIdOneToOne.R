@@ -11,8 +11,11 @@
 ##' @return A converted ID character with the same order of parameter x.
 ##' @importFrom biomaRt getBM useMart
 ##' @export
-##' @examples x<-c("Q04837","P0C0L4","P0C0L5","O75379","Q13068","A2MYD1")
+##' @examples 
+##' \dontrun{
+##' x<-c("Q04837","P0C0L4","P0C0L5","O75379","Q13068","A2MYD1")
 ##' convertIdOneToOne(x,filters="uniprotswissprot",verbose=TRUE)
+##' }
 convertIdOneToOne<-function(x,dataset="hsapiens_gene_ensembl",filters="uniprotswissprot",attributes =c(filters,"entrezgene_id"),verbose=FALSE) {
 	if (verbose) {
 		cat("Now conectting with ensembl. Internet acess is needed and it may use 30 seconds.\n")

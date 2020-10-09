@@ -81,9 +81,7 @@ A function to estitamete the sample size based on read counts and dispersion dis
 A function to estitamete the sample size based on read counts and dispersion distribution in real data.
 }
 \examples{
-\dontrun{
 #Please note here the parameter repNumber was very small (5) to make the example code faster.
 #We suggest repNumber should be at least set as 100 in real analysis.
 sample_size_distribution(power=0.8,f=0.01,distributionObject="TCGA_READ",repNumber=5,showMessage=TRUE)
-}
 }

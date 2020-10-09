@@ -12,6 +12,7 @@
 ##' @param cex A numerical value giving the amount by which plotting text and symbols should be magnified relative to the default.
 ##' @param col The line color.
 ##' @inheritParams graphics::plot.default
+##' @return A power curve plot.
 ##' @export
 ##' @examples result1<-sample_size(rho=2,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,showMessage=TRUE,storeProcess=TRUE)
 ##' result2<-sample_size(rho=4,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,showMessage=TRUE,storeProcess=TRUE)
@@ -51,11 +52,10 @@ plot_power_curve<-function(result,cexLegend=1,type="b",xlab="Sample Size",ylab="
 ##' @inheritParams sample_size
 ##' @return A list including parameters, sample size and power. 
 ##' @export
-##' @examples \dontrun{
+##' @examples
 ##' result1<-est_power_curve(n=63, f=0.01, rho=2, lambda0=5, phi0=0.5)
 ##' result2<-est_power_curve(n=63, f=0.05, rho=2, lambda0=5, phi0=0.5)
 ##' plot_power_curve(list(result1,result2))
-##' }
 est_power_curve<-function(n, w=1, rho=2, lambda0=5, phi0=1,alpha=0.05,f=0.05,...) {
 	if (n<=10) {
 		sampleSizeList<-1:n

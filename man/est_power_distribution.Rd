@@ -78,10 +78,10 @@ A function to estitamete the power for differential expression analysis of RNA-s
 A function to estitamete the power for differential expression analysis of RNA-seq data.
 }
 \examples{
-\dontrun{
 #Please note here the parameter repNumber was very small (5) to make the example code faster.
 #We suggest repNumber should be at least set as 100 in real analysis.
 est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",repNumber=5)
+\dontrun{
 #Power estimation based on some interested genes. We use storeProcess=TRUE to return the details for all selected genes.
 selectedGenes<-names(TCGA_READ$pseudo.counts.mean)[c(1,3,5,7,9,12:30)]
 powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",selectedGenes=selectedGenes,minAveCount=1,storeProcess=TRUE)

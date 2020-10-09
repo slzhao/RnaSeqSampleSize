@@ -61,10 +61,11 @@ est_count_dispersion<-function(counts,group=rep(1,NCOL(counts)),subSampleNum=20,
 ##' @inheritParams sample_size
 ##' @import RnaSeqSampleSizeData
 ##' @export
-##' @examples \dontrun{
+##' @examples
 ##' #Please note here the parameter repNumber was very small (5) to make the example code faster.
 ##' #We suggest repNumber should be at least set as 100 in real analysis.
 ##' est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",repNumber=5)
+##' \dontrun{
 ##' #Power estimation based on some interested genes. We use storeProcess=TRUE to return the details for all selected genes.
 ##' selectedGenes<-names(TCGA_READ$pseudo.counts.mean)[c(1,3,5,7,9,12:30)]
 ##' powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",selectedGenes=selectedGenes,minAveCount=1,storeProcess=TRUE)
