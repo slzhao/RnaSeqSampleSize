@@ -24,12 +24,18 @@ A user friendly web interface for RnaSeqSampleSize package is provided at [CQS w
 
 # Download and install
 
-You can download and install RnaSeqSampleSize package from [github](https://github.com/slzhao/RnaSeqSampleSize) by the following commands.
-
+You can download and install RnaSeqSampleSize package from [BIoconductor](http://www.bioconductor.org/packages/release/bioc/html/RnaSeqSampleSize.html) directly by the following commands.
+  
 	#Running the following codes in your R
-	library(devtools)
-    install_github("slzhao/RnaSeqSampleSizeData")
-    install_github("slzhao/RnaSeqSampleSize")
+  if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+  BiocManager::install("RnaSeqSampleSize")
+  
+Or you can download and install RnaSeqSampleSize package from [github](https://github.com/slzhao/RnaSeqSampleSize) by the following commands.
+  
+  #Running the following codes in your R
+  library(devtools)
+  install_github("slzhao/RnaSeqSampleSizeData")
+  install_github("slzhao/RnaSeqSampleSize")
 
 <a name="example"/>
 
