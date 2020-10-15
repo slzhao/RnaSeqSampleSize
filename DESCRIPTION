@@ -11,7 +11,12 @@ Authors@R: c(person("Shilin Zhao", "Developer", role = c("aut", "cre"),
               person("Yu Shyr", "Developer", role = "aut"))
 Description: RnaSeqSampleSize package provides a sample size calculation method
     based on negative binomial model and the exact test for assessing
-    differential expression analysis of RNA-seq data.
+    differential expression analysis of RNA-seq data. It controls FDR for 
+    multiple testing and utilizes the average read count and dispersion 
+    distributions from real data to estimate a more reliable sample size.  
+    It is also equipped with several unique features, including estimation for 
+    interested genes or pathway, power curve visualization, and parameter 
+    optimization.
 License: GPL (>= 2)
 LazyLoad: yes
 Depends:

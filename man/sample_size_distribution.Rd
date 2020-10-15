@@ -20,7 +20,6 @@ sample_size_distribution(
   maxAveCount = 2000,
   repNumber = 100,
   dispersionDigits = 1,
-  seed = 123,
   selectedGenes,
   pathway,
   species = "hsa",
@@ -58,8 +57,6 @@ sample_size_distribution(
 \item{repNumber}{Number of genes used in estimation of read counts and dispersion distribution.}
 
 \item{dispersionDigits}{Digits of dispersion.}
-
-\item{seed}{Optianal. A integer, seed for randomly selecting genes.}
 
 \item{selectedGenes}{Optianal. Name of interesed genes. Only the read counts and dispersion distribution for these genes will be used in power estimation.}
 

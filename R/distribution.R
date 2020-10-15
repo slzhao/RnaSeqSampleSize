@@ -59,19 +59,17 @@ est_count_dispersion<-function(counts,group=rep(1,NCOL(counts)),subSampleNum=20,
 ##' @import RnaSeqSampleSizeData
 ##' @export
 ##' @examples
-##' #Please note here the parameter repNumber was very small (5) to make the example code faster.
+##' #Please note here the parameter repNumber was very small (2) to make the example code faster.
 ##' #We suggest repNumber should be at least set as 100 in real analysis.
-##' est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",repNumber=5)
-##' \dontrun{
+##' est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",repNumber=2)
 ##' #Power estimation based on some interested genes. We use storeProcess=TRUE to return the details for all selected genes.
 ##' selectedGenes<-names(TCGA_READ$pseudo.counts.mean)[c(1,3,5,7,9,12:30)]
-##' powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",selectedGenes=selectedGenes,minAveCount=1,storeProcess=TRUE)
+##' powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",selectedGenes=selectedGenes,minAveCount=1,storeProcess=TRUE,repNumber=2)
 ##' str(powerDistribution)
 ##' mean(powerDistribution$power)
 ##' #Power estimation based on genes in interested pathway
-##' powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",pathway="00010",minAveCount=1,storeProcess=TRUE)
+##' powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",pathway="00010",minAveCount=1,storeProcess=TRUE,repNumber=2)
 ##' mean(powerDistribution$power)
-##' }
 est_power_distribution<-function(n,f=0.1,m=10000,m1=100, w=1, rho=2,repNumber=100,dispersionDigits=1,distributionObject,libSize,minAveCount=5,maxAveCount=2000,selectedGenes,pathway,species="hsa",storeProcess=FALSE,countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE,removedGene0Power=TRUE) {
 	temp<-selectDistribution(distributionObject=distributionObject,libSize=libSize,repNumber=repNumber,dispersionDigits=dispersionDigits,minAveCount=minAveCount,maxAveCount=maxAveCount,selectedGenes=selectedGenes,pathway=pathway,species=species,countFilterInRawDistribution=countFilterInRawDistribution,
 			selectedGeneFilterByCount=selectedGeneFilterByCount,removedGene0Power=removedGene0Power)

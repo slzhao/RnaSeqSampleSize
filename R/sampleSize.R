@@ -83,7 +83,7 @@ sample_size<-function(power=0.8,m=20000, m1=200, f=0.1, k=1,w=1, rho=2, lambda0=
 ##' #Please note here the parameter repNumber was very small (5) to make the example code faster.
 ##' #We suggest repNumber should be at least set as 100 in real analysis.
 ##' sample_size_distribution(power=0.8,f=0.01,distributionObject="TCGA_READ",repNumber=5,showMessage=TRUE)
-sample_size_distribution<-function(power=0.8,m=10000, m1=100, f=0.1, k=1,w=1, rho=2,showMessage=FALSE,storeProcess=FALSE,distributionObject,libSize,minAveCount=5,maxAveCount=2000,repNumber=100,dispersionDigits=1,seed=123,selectedGenes,pathway,species="hsa",countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE){
+sample_size_distribution<-function(power=0.8,m=10000, m1=100, f=0.1, k=1,w=1, rho=2,showMessage=FALSE,storeProcess=FALSE,distributionObject,libSize,minAveCount=5,maxAveCount=2000,repNumber=100,dispersionDigits=1,selectedGenes,pathway,species="hsa",countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE){
 	
 	r1<-m1 * power
 	beta<-1-power
@@ -94,7 +94,7 @@ sample_size_distribution<-function(power=0.8,m=10000, m1=100, f=0.1, k=1,w=1, rh
 	step.power<-5
 	
 	#process distribution
-	temp<-selectDistribution(distributionObject=distributionObject,libSize=libSize,repNumber=repNumber,dispersionDigits=dispersionDigits,minAveCount=minAveCount,maxAveCount=maxAveCount,seed=seed,selectedGenes=selectedGenes,pathway=pathway,species=species,countFilterInRawDistribution=countFilterInRawDistribution,selectedGeneFilterByCount=selectedGeneFilterByCount)
+	temp<-selectDistribution(distributionObject=distributionObject,libSize=libSize,repNumber=repNumber,dispersionDigits=dispersionDigits,minAveCount=minAveCount,maxAveCount=maxAveCount,selectedGenes=selectedGenes,pathway=pathway,species=species,countFilterInRawDistribution=countFilterInRawDistribution,selectedGeneFilterByCount=selectedGeneFilterByCount)
 	dispersionDistribution<-temp$selectedDispersion
 	countDistribution<-temp$selectedCount	
 	

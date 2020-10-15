@@ -17,7 +17,6 @@ est_power_distribution(
   libSize,
   minAveCount = 5,
   maxAveCount = 2000,
-  seed = 123,
   selectedGenes,
   pathway,
   species = "hsa",
@@ -52,8 +51,6 @@ est_power_distribution(
 
 \item{maxAveCount}{Maximal average read count for each gene. Genes with larger read counts will be taken as maxAveCount.}
 
-\item{seed}{Optianal. A integer, seed for randomly selecting genes.}
-
 \item{selectedGenes}{Optianal. Name of interesed genes. Only the read counts and dispersion distribution for these genes will be used in power estimation.}
 
 \item{pathway}{Optianal. ID of interested KEGG pathway. Only the read counts and dispersion distribution for genes in this pathway will be used in power estimation.}
@@ -78,17 +75,15 @@ A function to estitamete the power for differential expression analysis of RNA-s
 A function to estitamete the power for differential expression analysis of RNA-seq data.
 }
 \examples{
-#Please note here the parameter repNumber was very small (5) to make the example code faster.
+#Please note here the parameter repNumber was very small (2) to make the example code faster.
 #We suggest repNumber should be at least set as 100 in real analysis.
-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",repNumber=5)
-\dontrun{
+est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",repNumber=2)
 #Power estimation based on some interested genes. We use storeProcess=TRUE to return the details for all selected genes.
 selectedGenes<-names(TCGA_READ$pseudo.counts.mean)[c(1,3,5,7,9,12:30)]
-powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",selectedGenes=selectedGenes,minAveCount=1,storeProcess=TRUE)
+powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",selectedGenes=selectedGenes,minAveCount=1,storeProcess=TRUE,repNumber=2)
 str(powerDistribution)
 mean(powerDistribution$power)
 #Power estimation based on genes in interested pathway
-powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",pathway="00010",minAveCount=1,storeProcess=TRUE)
+powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",pathway="00010",minAveCount=1,storeProcess=TRUE,repNumber=2)
 mean(powerDistribution$power)
-}
 }
