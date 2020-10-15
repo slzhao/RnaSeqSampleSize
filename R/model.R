@@ -97,7 +97,7 @@ generateModel<-function(lambda0=c(1,5,10,20),n, w=1,k=1, rho=2.0, phi0=1, alpha=
 		modelIntercept1<-model$coefficients[1]
 		modelX1<-model$coefficients[2]
 		if (showMessage) {
-			cat("Model1 summary:\n")
+			message("Model1 summary:")
 			print(summary(model))
 			abline(modelIntercept1,modelX1,col="red")
 		}
@@ -114,7 +114,7 @@ generateModel<-function(lambda0=c(1,5,10,20),n, w=1,k=1, rho=2.0, phi0=1, alpha=
 		modelIntercept2<-model$coefficients[1]
 		modelX2<-model$coefficients[2]
 		if (showMessage) {
-			cat("Model2 summary:\n")
+			message("Model2 summary:")
 			print(summary(model))
 			abline(modelIntercept2,modelX2,col="green")
 		}

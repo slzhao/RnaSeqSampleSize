@@ -14,9 +14,8 @@ Description: RnaSeqSampleSize package provides a sample size calculation method
     differential expression analysis of RNA-seq data.
 License: GPL (>= 2)
 LazyLoad: yes
-LazyData: yes
 Depends:
-    R (>= 3.5.0),
+    R (>= 4.0.0),
     RnaSeqSampleSizeData
 Imports:
     biomaRt,edgeR,heatmap3,matlab,KEGGREST,methods,grDevices, graphics, stats, 
@@ -25,7 +24,8 @@ LinkingTo: Rcpp
 VignetteBuilder: knitr
 Suggests:
     BiocStyle,
-    knitr
+    knitr,
+    testthat
 biocViews: ImmunoOncology, ExperimentalDesign, Sequencing, RNASeq, GeneExpression,
     DifferentialExpression
 RoxygenNote: 7.1.1

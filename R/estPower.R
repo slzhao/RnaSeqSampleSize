@@ -73,7 +73,6 @@ est_power_root<-function(n,k=1, w=1, rho=2.0, lambda0=5, phi0=1, beta=0.2, alpha
 	}
 	
 	if (returnDetail) {
-		#TODO: better b to result matrix
 		if (!is.na(Y1[1])) {
 			for (i in 1:length(Y1)) {
 				b[(Y1[i]-q1_l+1):(q1_u-q1_l+1),(X1[i]-q0_l+1)]<-alpha
