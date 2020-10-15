@@ -29,7 +29,7 @@ uniroot.integer<-function (f, interval, ..., lower = min(interval), upper = max(
 		xold <- upper
 	}
 	if (print.steps) {
-		print(paste("x=", xold, " f(x)=", f.old))
+		message(paste("x=", xold, " f(x)=", f.old))
 	}
 	stored<-rbind(stored,c(xold,f.old))
 	ever.switched <- FALSE
@@ -40,7 +40,7 @@ uniroot.integer<-function (f, interval, ..., lower = min(interval), upper = max(
 			f.new <- f(xnew, ...)
 			iter <- iter + 1
 			if (print.steps) {
-				print(paste("x=", xnew, " f(x)=", f.new))
+				message(paste("x=", xnew, " f(x)=", f.new))
 			}
 			stored<-rbind(stored,c(xnew,f.new))
 		}
@@ -63,7 +63,7 @@ uniroot.integer<-function (f, interval, ..., lower = min(interval), upper = max(
 				xswitch <- x.extreme
 				f.switch <- f.extreme
 				if (print.steps) {
-					print(paste("x=", x.extreme, " f(x)=", f.extreme))
+					message(paste("x=", x.extreme, " f(x)=", f.extreme))
 				}
 				stored<-rbind(stored,c(x.extreme,f.extreme))
 				

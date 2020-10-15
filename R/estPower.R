@@ -49,8 +49,6 @@ est_power_root<-function(n,k=1, w=1, rho=2.0, lambda0=5, phi0=1, beta=0.2, alpha
 	} else { #NB
 		method<-"nb"
 	}
-#	method<-"beta"
-#	cat(paste0(method,"\n"))
 	temp<-pCutoffMatrix(x1=q1_l:q1_u,x0=q0_l:q0_u, n=n, phi=phi0, w=w,k=k,alpha=alpha,method=method,bigCount=bigCount)
 	
 	a<-0
@@ -88,7 +86,6 @@ est_power_root<-function(n,k=1, w=1, rho=2.0, lambda0=5, phi0=1, beta=0.2, alpha
 
 		#beacuse est_power_root is used in uniroot.integer for fdr based power estimation, in which difference between estimated power and desired power is used to get a number most close to 0 
 		#So it need to return (power-(1-beta)), where 1-beta is desired power
-#		return(list(matrix=b,X1=X1,X2=X2,Y1=Y1,Y2=Y2,power=a-(1-beta)))
 		return(list(matrix=b,X1=X1[X1!=q0_l & X1!=q0_u & Y1!=q1_l & Y1!=q1_u],X2=X2[X2!=q0_l & X2!=q0_u & Y2!=q1_l & Y2!=q1_u],Y1=Y1[X1!=q0_l & X1!=q0_u & Y1!=q1_l & Y1!=q1_u],Y2=Y2[X2!=q0_l & X2!=q0_u & Y2!=q1_l & Y2!=q1_u],
 		            power=a,powerForUnirootFdr=a-(1-beta)))
 	} else {
@@ -100,7 +97,6 @@ pCutoffMatrix<-function(x1,x0, n, phi, w=1,k=1,alpha=0.05,method=c("nb","beta"),
 	method<-match.arg(method)
 	alphaOneSide<-alpha/2
 	
-#	y<-unique(as.vector(outer(x1,x0,'+')))
 	y<-(min(x1)+min(x0)):(max(x1)+max(x0))
 	if (method=="nb") {
 		largeCountInd<-y>=(bigCount*4)
@@ -112,7 +108,6 @@ pCutoffMatrix<-function(x1,x0, n, phi, w=1,k=1,alpha=0.05,method=c("nb","beta"),
 			mu <- y[largeCountInd]/(n1+n2)
 			alpha1 <- n1*mu/(1+phi*mu)
 			alpha2 <- n2/n1*alpha1
-			#d=(x0Cutoff+0.5)/y
 			d<-qbeta(alphaOneSide,alpha1,alpha2)
 			x0Max[largeCountInd]<-as.integer(d*y[largeCountInd]-0.5)
 			
