@@ -16,8 +16,6 @@
 ##' @examples counts<-matrix(sample(1:1000,6000,replace=TRUE),ncol=6)
 ##' est_count_dispersion(counts=counts,group=rep(0,6))
 est_count_dispersion<-function(counts,group=rep(1,NCOL(counts)),subSampleNum=20,minAveCount=1,convertId=FALSE,dataset="hsapiens_gene_ensembl",filters="hgnc_symbol") {
-#	require(edgeR)
-	set.seed(123)
 	subSample<-if (ncol(counts)<=subSampleNum) 1:ncol(counts) else sample(1:ncol(counts),subSampleNum)
 	countsSub<-counts[,subSample]
 	groupSub<-group[subSample]
@@ -49,7 +47,6 @@ est_count_dispersion<-function(counts,group=rep(1,NCOL(counts)),subSampleNum=20,
 ##' @param libSize numeric vector giving the total count for each sample. If not specified, the libsize in distributionObject will be used.
 ##' @param minAveCount Minimal average read count for each gene. Genes with smaller read counts will not be used.
 ##' @param maxAveCount Maximal average read count for each gene. Genes with larger read counts will be taken as maxAveCount.
-##' @param seed Optianal. A integer, seed for randomly selecting genes.
 ##' @param selectedGenes Optianal. Name of interesed genes. Only the read counts and dispersion distribution for these genes will be used in power estimation.
 ##' @param pathway Optianal. ID of interested KEGG pathway. Only the read counts and dispersion distribution for genes in this pathway will be used in power estimation.
 ##' @param species Optianal. Species of interested KEGG pathway.
@@ -75,8 +72,8 @@ est_count_dispersion<-function(counts,group=rep(1,NCOL(counts)),subSampleNum=20,
 ##' powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",pathway="00010",minAveCount=1,storeProcess=TRUE)
 ##' mean(powerDistribution$power)
 ##' }
-est_power_distribution<-function(n,f=0.1,m=10000,m1=100, w=1, rho=2,repNumber=100,dispersionDigits=1,distributionObject,libSize,minAveCount=5,maxAveCount=2000,seed=123,selectedGenes,pathway,species="hsa",storeProcess=FALSE,countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE,removedGene0Power=TRUE) {
-	temp<-selectDistribution(distributionObject=distributionObject,libSize=libSize,repNumber=repNumber,dispersionDigits=dispersionDigits,minAveCount=minAveCount,maxAveCount=maxAveCount,seed=seed,selectedGenes=selectedGenes,pathway=pathway,species=species,countFilterInRawDistribution=countFilterInRawDistribution,
+est_power_distribution<-function(n,f=0.1,m=10000,m1=100, w=1, rho=2,repNumber=100,dispersionDigits=1,distributionObject,libSize,minAveCount=5,maxAveCount=2000,selectedGenes,pathway,species="hsa",storeProcess=FALSE,countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE,removedGene0Power=TRUE) {
+	temp<-selectDistribution(distributionObject=distributionObject,libSize=libSize,repNumber=repNumber,dispersionDigits=dispersionDigits,minAveCount=minAveCount,maxAveCount=maxAveCount,selectedGenes=selectedGenes,pathway=pathway,species=species,countFilterInRawDistribution=countFilterInRawDistribution,
 			selectedGeneFilterByCount=selectedGeneFilterByCount,removedGene0Power=removedGene0Power)
 	dispersionDistribution<-temp$selectedDispersion
 	countDistribution<-temp$selectedCount
@@ -145,7 +142,7 @@ selecteGeneByPathway<-function(distributionObject,species="hsa",pathway="00010")
 	return(result)
 }
 
-selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigits,minAveCount,maxAveCount,seed,selectedGenes,pathway,species,countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE,removedGene0Power=TRUE) {
+selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigits,minAveCount,maxAveCount,selectedGenes,pathway,species,countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE,removedGene0Power=TRUE) {
 	distributionInPackage<-data(package="RnaSeqSampleSizeData")$results[,"Item"]
 
 	if (is.character(distributionObject)) { #distributionInPackage
@@ -207,7 +204,6 @@ selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigi
 		maxDispersionDistribution<-max(dispersionDistribution[selectedGenes])
 		selectedGenes<-temp
 	} else {
-		set.seed(seed)
 		selectedGenes<-sample(genesLargerThanMinCount,repNumber)
 		maxDispersionDistribution<-max(dispersionDistribution[selectedGenes])
 	}
