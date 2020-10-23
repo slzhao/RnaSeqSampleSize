@@ -4,14 +4,24 @@
 ##' 
 ##'
 ##' 
-##' @param result the result of \code{\link{sample_size}} or \code{\link{est_power_curve}} function. The storeProcess parameter should be set as True when performing \code{\link{sample_size}} function. If you want to plot more than one curves in the same figure, the results from \code{\link{sample_size}} function should first be combined into a new list. At most five curves were allowed in one figure.
+##' @param result the result of \code{\link{sample_size}} or \code{\link{est_power_curve}} function. 
+##' The storeProcess parameter should be set as True when performing \code{\link{sample_size}} 
+##' function. If you want to plot more than one curves in the same figure, the results from 
+##' \code{\link{sample_size}} function should first be combined into a new list. At most five curves
+##'  were allowed in one figure.
 ##' @param cexLegend the cex for legend.
-##' @param pch Either an integer specifying a symbol or a single character to be used as the default in plotting points.
+##' @param pch Either an integer specifying a symbol or a single character to be used as the default
+##'  in plotting points.
 ##' @param lwd The line width.
 ##' @param las Numeric in {0,1,2,3}; the style of axis labels.
-##' @param cex A numerical value giving the amount by which plotting text and symbols should be magnified relative to the default.
+##' @param cex A numerical value giving the amount by which plotting text and symbols should be 
+##' magnified relative to the default.
 ##' @param col The line color.
-##' @inheritParams graphics::plot.default
+##' @param type 1-character string giving the type of plot desired. The following values are 
+##' possible, for details, see plot.
+##' @param xlab a label for the x axis, defaults to a description of x.
+##' @param ylab a label for the y axis, defaults to a description of y.
+##' @param main a main title for the plot
 ##' @return A power curve plot.
 ##' @export
 ##' @examples result1<-sample_size(rho=2,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,showMessage=TRUE,storeProcess=TRUE)
