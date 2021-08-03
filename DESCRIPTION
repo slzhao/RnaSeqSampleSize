@@ -1,14 +1,14 @@
 Package: RnaSeqSampleSize
 Type: Package
 Title: RnaSeqSampleSize
-Version: 1.99.2
+Version: 1.99.3
 Date: 2020-09-30
-Authors@R: c(person("Shilin Zhao", "Developer", role = c("aut", "cre"),
+Authors@R: c(person("Shilin Zhao", role = c("aut", "cre"),
                      email = "zhaoshilin@gmail.com"),
-              person("Chung-I Li", "Developer", role = "aut"),
-              person("Yan Guo", "Developer", role = "aut"),
-              person("Quanhu Sheng", "Developer", role = "aut"),
-              person("Yu Shyr", "Developer", role = "aut"))
+              person("Chung-I Li", role = "aut"),
+              person("Yan Guo",  role = "aut"),
+              person("Quanhu Sheng", role = "aut"),
+              person("Yu Shyr",role = "aut"))
 Description: RnaSeqSampleSize package provides a sample size calculation method
     based on negative binomial model and the exact test for assessing
     differential expression analysis of RNA-seq data. It controls FDR for 
