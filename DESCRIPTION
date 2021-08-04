@@ -1,8 +1,8 @@
 Package: RnaSeqSampleSize
 Type: Package
 Title: RnaSeqSampleSize
-Version: 2.3.0
-Date: 2020-09-30
+Version: 2.3.1
+Date: 2021-08-01
 Authors@R: c(person("Shilin Zhao", role = c("aut", "cre"),
                      email = "zhaoshilin@gmail.com"),
               person("Chung-I Li", role = "aut"),
@@ -21,10 +21,11 @@ License: GPL (>= 2)
 LazyLoad: yes
 Depends:
     R (>= 4.0.0),
+    ggplot2,
     RnaSeqSampleSizeData
 Imports:
     biomaRt,edgeR,heatmap3,matlab,KEGGREST,methods,grDevices, graphics, stats, 
-    utils,Rcpp (>= 0.11.2)
+    ggpubr,tidyr,utils,Rcpp (>= 0.11.2)
 LinkingTo: Rcpp
 VignetteBuilder: knitr
 Suggests:

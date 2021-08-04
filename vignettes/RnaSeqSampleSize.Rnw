@@ -169,6 +169,55 @@ est_power_distribution(n=65,f=0.01,rho=2,
 @
 As a result, we can find the estimated power is 0.91. Please note here the parameter repNumber was very small (5) to make the example code faster. We suggest repNumber should be at least set as 100 in real analysis.
 
+\subsection{Analyze public Rna-Seq data to find best parameters}
+If we are not sure about the parameters (such as library size, number of differential genes, or fold change cutoff), we can try to find these numbers from public Rna-Seq data with similar samples and design.
+
+\subsubsection{Library size and number of expression genes}
+
+For example, if we are planning a project with K562 cells and shRNA trasfection, we can download a data set with similar design (SRP009615) from recount database.
+
+<<librarySizeAndGeneRange,echo=TRUE,tidy=FALSE,cache=TRUE,message=FALSE,eval=FALSE>>=
+library(recount)
+studyId="SRP009615"
+url <- download_study(studyId)
+load(file.path(studyId, 'rse_gene.Rdata'))
+
+#show percent of mapped reads
+plot_mappedReads_percent(rse_gene)
+#show propotion of gene counts in different range
+plot_gene_counts_range(rse_gene,targetSize = 4e+07)
+
+@
+
+As a result, we know about 90% reads can be mapped to a gene, and there are about 40k genes expressed in these samples if we are  interested in genes with at least 1 average reads.
+
+\subsubsection{Number of differential genes and fold changes between two groups}
+
+For example, if we are planning a project to compare lung tissue between COVID-19 patients and healthy controls, we can download a data set with similar design (E-ENAD-46) from Expression Atlas database.
+
+<<AnalyzeDataSet,echo=TRUE,tidy=FALSE,cache=TRUE,message=FALSE,eval=FALSE>>=
+
+library(ExpressionAtlas)
+
+
+projectId="E-ENAD-46"
+allExps <- getAtlasData(projectId)
+ExpressionAtlasObj <- allExps[[ projectId ]]$rnaseq
+
+#only keeping "g2" (COVID-19) and "g4" (normal) samples
+expObj=ExpressionAtlasObj[,which(colData(ExpressionAtlasObj)$AtlasAssayGroup %in% c("g2","g4"))]
+expObjGroups= 2-as.integer(as.factor(colData(expObj)$AtlasAssayGroup)) #0 for normal and 1 for COVID-19 samples
+#only keeping genes with at least 10 counts
+minAveCount=10
+averageCountsGene=rowSums(assay(expObj))/ncol(expObj)
+expObjFilter=expObj[which(averageCountsGene>=minAveCount),]
+
+result=analyze_dataset(expObjFilter,expObjGroups=expObjGroups)
+
+@
+
+As a result, we used healthy samples as negative control, and find that there are few differential genes if testing between healthy samples and the fold change is also small. We also compared the COVID-19 samples and healthy samples in this dataset and identified 4k+ differential genes. The third figure indicated the similar dispersion pattern when using control samples only or disease and control samples. It means we can use healthy samples only to estimate dispersion distribution, if we don't have COVID-19 samples.
+
 \subsection{Power curve visualization}
 For example, if we are going to compare the power of finding significant genes for different false discovery rate, and we have the following parameters:
 \begin{itemize}
