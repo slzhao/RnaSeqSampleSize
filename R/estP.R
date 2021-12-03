@@ -1,12 +1,4 @@
 #' @useDynLib RnaSeqSampleSize generateA2Fx myDnbinom2
-#' @importFrom Rcpp sourceCpp
-#' @importFrom KEGGREST keggLink
-#' @importFrom grDevices rainbow
-#' @importFrom graphics abline legend lines points polygon
-#' @importFrom stats dnbinom lm pnbinom qbeta qnbinom qnorm
-#' @importFrom utils data flush.console
-#' @importFrom methods is
-#' 
 generateA2FxR <- function(a,n,phi)
 	.Call("generateA2Fx",as.double(a),as.double(n),as.double(phi),PACKAGE="RnaSeqSampleSize")
 

@@ -60,6 +60,7 @@ generateModel<-function(lambda0=c(1,5,10,20),n, w=1,k=1, rho=2.0, phi0=1, alpha=
 	X2<-NULL
 	Y1<-NULL
 	Y2<-NULL
+	
 	minEstimatedPowerWithLambda0=1
 	for (i in 1:length(lambda0)) {		
 		temp<-est_power_root(n=n, w=w,k=k, rho=rho, lambda0=lambda0[i], phi0=phi0, alpha=alpha, error=error,returnDetail=TRUE)

@@ -24,8 +24,10 @@
 ##' @param main a main title for the plot
 ##' @return A power curve plot.
 ##' @export
-##' @examples result1<-sample_size(rho=2,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,showMessage=TRUE,storeProcess=TRUE)
-##' result2<-sample_size(rho=4,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,showMessage=TRUE,storeProcess=TRUE)
+##' @examples result1<-sample_size(rho=2,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,
+##' showMessage=TRUE,storeProcess=TRUE)
+##' result2<-sample_size(rho=4,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,
+##' showMessage=TRUE,storeProcess=TRUE)
 ##' plot_power_curve(list(result1,result2))
 plot_power_curve<-function(result,cexLegend=1,type="b",xlab="Sample Size",ylab="Power",pch=16,lwd=3,las=1,cex=1.5,main="Power Curve",col="red") {
 	if (identical(names(result),c("iter","f.root","root","process","parameters")) || identical(names(result),c("process","parameters","power"))) { #Only one result

@@ -26,7 +26,7 @@ BiocStyle::latex()
 \maketitle
 \begin{abstract}
 In this vignette, we demonstrated the application of \Biocpkg{RnaSeqSampleSize} as an sample size estimation tool for RNA-seq data.
-A user friendly web interface is also provided at \url{http://cqs.mc.vanderbilt.edu/shiny/RnaSeqSampleSize/} for researchers not familar with R.
+A user friendly web interface is also provided at \url{https://cqs.app.vumc.org/shiny/RnaSeqSampleSize/} for researchers not familiar with R.
 \\
 \\
 \Biocpkg{RnaSeqSampleSize} package provides the following features:
@@ -108,7 +108,7 @@ Please note here the parameter repNumber was very small (5) to make the example 
 <<distributionPower2,echo=TRUE,tidy=FALSE,cache=TRUE>>=
 #Power estimation based on some interested genes. 
 #We use storeProcess=TRUE to return the details for all selected genes.
-selectedGenes<-names(TCGA_READ$pseudo.counts.mean)[c(1,3,5,7,9,12:30)]
+selectedGenes<-c("A1BG","A2BP1","A2M","A4GALT","AAAS")
 powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,
                         distributionObject="TCGA_READ",
                         selectedGenes=selectedGenes,
@@ -117,7 +117,7 @@ str(powerDistribution)
 mean(powerDistribution$power)
 @
   \item If we are only intesested a specified pathway, we can use pathway and species parameters to specify the genes in a pathway to perform power estimation.
-<<distributionPower3,echo=TRUE,tidy=FALSE,cache=T>>=
+<<distributionPower3,echo=TRUE,tidy=FALSE,cache=T,eval=FALSE>>=
 powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,
                         distributionObject="TCGA_READ",pathway="00010",
                         minAveCount=1,storeProcess=TRUE)

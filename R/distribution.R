@@ -62,20 +62,25 @@ est_count_dispersion<-function(counts,group=rep(1,NCOL(counts)),subSampleNum=20,
 ##' #Please note here the parameter repNumber was very small (2) to make the example code faster.
 ##' #We suggest repNumber should be at least set as 100 in real analysis.
 ##' est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",repNumber=2)
-##' #Power estimation based on some interested genes. We use storeProcess=TRUE to return the details for all selected genes.
-##' selectedGenes<-names(TCGA_READ$pseudo.counts.mean)[c(1,3,5,7,9,12:30)]
-##' powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",selectedGenes=selectedGenes,minAveCount=1,storeProcess=TRUE,repNumber=2)
+##' #Power estimation based on some interested genes. We use storeProcess=TRUE to return the 
+##' #details for all selected genes.
+##' selectedGenes<-c("A1BG","A2BP1","A2M","A4GALT","AAAS")
+##' powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",
+##' selectedGenes=selectedGenes,minAveCount=1,storeProcess=TRUE,repNumber=2)
 ##' str(powerDistribution)
 ##' mean(powerDistribution$power)
 ##' #Power estimation based on genes in interested pathway
-##' powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",pathway="00010",minAveCount=1,storeProcess=TRUE,repNumber=2)
+##' \dontrun{
+##' powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",
+##' pathway="00010",minAveCount=1,storeProcess=TRUE,repNumber=2)
 ##' mean(powerDistribution$power)
+##' }
 est_power_distribution<-function(n,f=0.1,m=10000,m1=100, w=1, rho=2,repNumber=100,dispersionDigits=1,distributionObject,libSize,minAveCount=5,maxAveCount=2000,selectedGenes,pathway,species="hsa",storeProcess=FALSE,countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE,removedGene0Power=TRUE) {
 	temp<-selectDistribution(distributionObject=distributionObject,libSize=libSize,repNumber=repNumber,dispersionDigits=dispersionDigits,minAveCount=minAveCount,maxAveCount=maxAveCount,selectedGenes=selectedGenes,pathway=pathway,species=species,countFilterInRawDistribution=countFilterInRawDistribution,
 			selectedGeneFilterByCount=selectedGeneFilterByCount,removedGene0Power=removedGene0Power)
 	dispersionDistribution<-temp$selectedDispersion
 	countDistribution<-temp$selectedCount
-
+	
 	#determin alpha from most consertive power
 	phi0<-temp$maxDispersionDistribution
 	lambda0<-max(min(countDistribution),1)
@@ -145,8 +150,8 @@ selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigi
 
 	if (is.character(distributionObject)) { #distributionInPackage
 		if (distributionObject %in% distributionInPackage) {
-			data(list=distributionObject)
-			distributionObject<-get(distributionObject)
+			data(list=distributionObject,envir=environment())
+			distributionObject<-get(distributionObject,envir=environment())
 		} else {
 			stop(paste0("The distributionObject name ",distributionObject," is not in the dataset of RnaSeqSamplSize package"))
 		}
@@ -155,7 +160,7 @@ selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigi
 			stop(paste0("The distributionObject is not a DGEList. Please use est_count_dispersion function to estimate distribution"))
 		}
 	}
-
+	
 	#if minAveCount < distributionObject min count, make minAveCount as distributionObject min count
 	minAveCount<-max(1,minAveCount,min(round(distributionObject$pseudo.counts.mean)))
 
@@ -171,11 +176,11 @@ selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigi
 		genesLargerThanMinCount<-which(distributionObject$pseudo.counts.mean>=minAveCount)
 	}
 	distributionObject$pseudo.counts.mean[distributionObject$pseudo.counts.mean>=maxAveCount]<-maxAveCount
-
+	
 	#Dispersion distribution
 	dispersionDistribution<-round(distributionObject$tagwise.dispersion,dispersionDigits)
 	dispersionDistribution[dispersionDistribution==0]<-10^-dispersionDigits
-
+	
 	#selectedGenes or not
 	if (!missing(pathway) | !missing(selectedGenes)) {
 		if (!missing(pathway)) {
@@ -204,8 +209,11 @@ selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigi
 	} else {
 		selectedGenes<-sample(genesLargerThanMinCount,repNumber)
 		maxDispersionDistribution<-max(dispersionDistribution[selectedGenes])
+		print(5)
 	}
 
+	#browser()
+	
 	#return selected genes' distribution
 	countDistribution<-distributionObject$pseudo.counts.mean[selectedGenes]
 #	countDistribution[countDistribution==0]<-1

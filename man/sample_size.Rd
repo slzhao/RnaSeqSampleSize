@@ -19,7 +19,7 @@ sample_size(
 )
 }
 \arguments{
-\item{power}{Power to detecte prognostic genes.}
+\item{power}{Power to detect prognostic genes.}
 
 \item{m}{Total number of genes for testing.}
 
@@ -27,11 +27,11 @@ sample_size(
 
 \item{f}{FDR level}
 
-\item{k}{Ratio of sample size between two groups.}
+\item{k}{Ratio of sample size between two groups (Treatment/Control).}
 
 \item{w}{Ratio of normalization factors between two groups.}
 
-\item{rho}{minimum fold changes for prognostic genes between two groups.}
+\item{rho}{minimum fold changes for prognostic genes between two groups (Treatment/Control).}
 
 \item{lambda0}{Average read counts for prognostic genes.}
 

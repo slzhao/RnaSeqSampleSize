@@ -55,7 +55,9 @@ A power curve plot.
 A function to plot power curves based on the result of \code{\link{sample_size}} or \code{\link{est_power_curve}} function.
 }
 \examples{
-result1<-sample_size(rho=2,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,showMessage=TRUE,storeProcess=TRUE)
-result2<-sample_size(rho=4,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,showMessage=TRUE,storeProcess=TRUE)
+result1<-sample_size(rho=2,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,
+showMessage=TRUE,storeProcess=TRUE)
+result2<-sample_size(rho=4,phi0=1,lambda0=1,f=0.01,power=0.8,m=20000,m1=500,
+showMessage=TRUE,storeProcess=TRUE)
 plot_power_curve(list(result1,result2))
 }

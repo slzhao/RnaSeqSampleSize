@@ -7,6 +7,7 @@
 est_power(
   n,
   w = 1,
+  k = 1,
   rho = 2,
   lambda0 = 5,
   phi0 = 1,
@@ -21,7 +22,9 @@ est_power(
 
 \item{w}{Ratio of normalization factors between two groups.}
 
-\item{rho}{minimum fold changes for prognostic genes between two groups.}
+\item{k}{Ratio of sample size between two groups (Treatment/Control).}
+
+\item{rho}{minimum fold changes for prognostic genes between two groups (Treatment/Control).}
 
 \item{lambda0}{Average read counts for prognostic genes.}
 

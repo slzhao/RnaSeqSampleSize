@@ -5,9 +5,12 @@
 ##'
 ##' 
 ##' @param expObj RangedSummarizedExperiment object.
-##' @param expObjGroups sample groups. Should be a vectgor of 0 and 1. 0 as control samples.
+##' @param expObjGroups sample groups. Should be a vector of 0 and 1. 0 as control samples.
+##' @param fdrCut FDR cutoff to select differential genes.
+##' @param subset RangedSummarizedExperiment object.
+##' @param repN Number of replications.
+##' @param useAllSamplesAsNegativeControl Logic. If true, will Use all samples in the obj as negative control
 ##' @return Figures and a list of result data.
-##' @importFrom ggpubr ggarrange
 ##' @export
 ##' @examples 1
 analyze_dataset=function(expObj,expObjGroups=NULL,
@@ -26,7 +29,7 @@ analyze_dataset=function(expObj,expObjGroups=NULL,
 		expObjGroupsNegativeControl=sample(c(0,1),ncol(expObjNegativeControl),replace = TRUE)
 	}
 	if (ncol(expObjNegativeControl)<=3) {
-		break("At least 4 control samples needed for dataset analysis")
+		stop("At least 4 control samples needed for dataset analysis")
 	}
 	
 	############################
@@ -81,7 +84,7 @@ analyze_dataset=function(expObj,expObjGroups=NULL,
 	
 	#estimate dispersion for control samples only and compare with dispersion from all samples
 	controlSampleInd=which(expObjGroups==0)
-	yControl <- estimateDisp(assay(expObj)[,controlSampleInd],group= expObjGroups[controlSampleInd])
+	yControl <- estimateDisp(SummarizedExperiment::assay(expObj)[,controlSampleInd],group= expObjGroups[controlSampleInd])
 
 	temp=data.frame(DispersionInTreatmentVsControl=y$tagwise.dispersion,DispersionInControlOnly=yControl$tagwise.dispersion)
 	p=ggplot(temp,aes(x=DispersionInTreatmentVsControl,y=DispersionInControlOnly))+geom_point()

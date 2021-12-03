@@ -11,28 +11,28 @@
 ##' @export
 ##' @examples n<-63;rho<-2;lambda0<-5;phi0<-0.5;f<-0.01
 ##' est_power(n=n, rho=rho, lambda0=lambda0, phi0=phi0,f=f)
-est_power<-function(n, w=1, rho=2, lambda0=5, phi0=1,alpha=0.05,f,m=20000,m1=200){
+est_power<-function(n, w=1, k=1,rho=2, lambda0=5, phi0=1,alpha=0.05,f,m=20000,m1=200){
 	if (!missing(f)) {#FDR power
-		power_fdr_100<-est_power_root_fdr(power=1,n=n, w=w, rho=rho, lambda0=lambda0, phi0=phi0,m=m,m1=m1,fdr=f)
+		power_fdr_100<-est_power_root_fdr(power=1,n=n, w=w,k=k, rho=rho, lambda0=lambda0, phi0=phi0,m=m,m1=m1,fdr=f)
 		if (power_fdr_100<0.01) {
 			return(0)
 		} else {
-			power_fdr<-uniroot.integer(f=est_power_root_fdr,interval=c(1,100),n=n, w=w, rho=rho, lambda0=lambda0, phi0=phi0,m=m,m1=m1,fdr=f)
+			power_fdr<-uniroot.integer(f=est_power_root_fdr,interval=c(1,100),n=n, w=w,k=k, rho=rho, lambda0=lambda0, phi0=phi0,m=m,m1=m1,fdr=f)
 			return((power_fdr$root-1)/100)
 		}
 	} else {#alpha power
-		power<-est_power_root(n=n, w=w, rho=rho, lambda0=lambda0, phi0=phi0, alpha=alpha)
+		power<-est_power_root(n=n, w=w,k=k, rho=rho, lambda0=lambda0, phi0=phi0, alpha=alpha)
 		#beacuse est_power_root is returning (power-(1-beta)), which can be used in uniroot.integer for fdr based power estimation. 
 		#If using it directly for alpha based power, need +0.8 to get correct power as default value for beta is 0.2. 
 		return(power+0.8) 
 	}
 }
 
-est_power_root_fdr<-function(power,n, w, rho, lambda0, phi0,fdr,m,m1,...) {
+est_power_root_fdr<-function(power,n, w,k, rho, lambda0, phi0,fdr,m,m1,...) {
 	alpha_star<-m1 * power/100*fdr/((m-m1)*(1-fdr))
 #	cat(paste0(alpha_star,"\n"))
 	beta<-1-power/100
-	est_power_root(n=n, w=w, rho=rho, lambda0=lambda0, phi0=phi0, alpha=alpha_star,beta=beta,...)
+	est_power_root(n=n, w=w,k=k, rho=rho, lambda0=lambda0, phi0=phi0, alpha=alpha_star,beta=beta,...)
 }
 
 est_power_root<-function(n,k=1, w=1, rho=2.0, lambda0=5, phi0=1, beta=0.2, alpha=0.05, bigCount=900,error=0.001,returnDetail=FALSE){

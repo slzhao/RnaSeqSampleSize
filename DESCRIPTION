@@ -1,8 +1,8 @@
 Package: RnaSeqSampleSize
 Type: Package
 Title: RnaSeqSampleSize
-Version: 2.3.1
-Date: 2021-08-01
+Version: 2.5.1
+Date: 2021-12-02
 Authors@R: c(person("Shilin Zhao", role = c("aut", "cre"),
                      email = "zhaoshilin@gmail.com"),
               person("Chung-I Li", role = "aut"),
@@ -24,8 +24,8 @@ Depends:
     ggplot2,
     RnaSeqSampleSizeData
 Imports:
-    biomaRt,edgeR,heatmap3,matlab,KEGGREST,methods,grDevices, graphics, stats, 
-    ggpubr,tidyr,utils,Rcpp (>= 0.11.2)
+    biomaRt,edgeR,heatmap3,matlab,KEGGREST,methods,grDevices, graphics, stats,
+    Rcpp (>= 0.11.2),recount,ggpubr,SummarizedExperiment,tidyr,dplyr,tidyselect,utils
 LinkingTo: Rcpp
 VignetteBuilder: knitr
 Suggests:
@@ -34,5 +34,5 @@ Suggests:
     testthat
 biocViews: ImmunoOncology, ExperimentalDesign, Sequencing, RNASeq, GeneExpression,
     DifferentialExpression
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8

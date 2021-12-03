@@ -16,7 +16,15 @@ analyze_dataset(
 \arguments{
 \item{expObj}{RangedSummarizedExperiment object.}
 
-\item{expObjGroups}{sample groups. Should be a vectgor of 0 and 1. 0 as control samples.}
+\item{expObjGroups}{sample groups. Should be a vector of 0 and 1. 0 as control samples.}
+
+\item{fdrCut}{FDR cutoff to select differential genes.}
+
+\item{subset}{RangedSummarizedExperiment object.}
+
+\item{repN}{Number of replications.}
+
+\item{useAllSamplesAsNegativeControl}{Logic. If true, will Use all samples in the obj as negative control}
 }
 \value{
 Figures and a list of result data.

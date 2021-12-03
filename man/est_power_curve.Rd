@@ -20,7 +20,7 @@ est_power_curve(
 
 \item{w}{Ratio of normalization factors between two groups.}
 
-\item{rho}{minimum fold changes for prognostic genes between two groups.}
+\item{rho}{minimum fold changes for prognostic genes between two groups (Treatment/Control).}
 
 \item{lambda0}{Average read counts for prognostic genes.}
 

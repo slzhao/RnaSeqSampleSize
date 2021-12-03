@@ -13,11 +13,11 @@
 ##' 
 ##' @param m Total number of genes for testing.
 ##' @param m1 Expected number of prognostic genes.
-##' @param power Power to detecte prognostic genes.
+##' @param power Power to detect prognostic genes.
 ##' @param f FDR level
 ##' @param w Ratio of normalization factors between two groups.
-##' @param k Ratio of sample size between two groups.
-##' @param rho minimum fold changes for prognostic genes between two groups.
+##' @param k Ratio of sample size between two groups (Treatment/Control).
+##' @param rho minimum fold changes for prognostic genes between two groups (Treatment/Control).
 ##' @param lambda0 Average read counts for prognostic genes.
 ##' @param phi0 Dispersion for prognostic genes.
 ##' @param showMessage Logical. Display the message in the estimation process.
@@ -82,7 +82,8 @@ sample_size<-function(power=0.8,m=20000, m1=200, f=0.1, k=1,w=1, rho=2, lambda0=
 ##' @examples
 ##' #Please note here the parameter repNumber was very small (5) to make the example code faster.
 ##' #We suggest repNumber should be at least set as 100 in real analysis.
-##' sample_size_distribution(power=0.8,f=0.01,distributionObject="TCGA_READ",repNumber=5,showMessage=TRUE)
+##' sample_size_distribution(power=0.8,f=0.01,distributionObject="TCGA_READ",repNumber=5,
+##' showMessage=TRUE)
 sample_size_distribution<-function(power=0.8,m=10000, m1=100, f=0.1, k=1,w=1, rho=2,showMessage=FALSE,storeProcess=FALSE,distributionObject,libSize,minAveCount=5,maxAveCount=2000,repNumber=100,dispersionDigits=1,selectedGenes,pathway,species="hsa",countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE){
 	
 	r1<-m1 * power

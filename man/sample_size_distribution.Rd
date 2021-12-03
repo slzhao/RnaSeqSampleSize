@@ -28,7 +28,7 @@ sample_size_distribution(
 )
 }
 \arguments{
-\item{power}{Power to detecte prognostic genes.}
+\item{power}{Power to detect prognostic genes.}
 
 \item{m}{Total number of genes for testing.}
 
@@ -36,11 +36,11 @@ sample_size_distribution(
 
 \item{f}{FDR level}
 
-\item{k}{Ratio of sample size between two groups.}
+\item{k}{Ratio of sample size between two groups (Treatment/Control).}
 
 \item{w}{Ratio of normalization factors between two groups.}
 
-\item{rho}{minimum fold changes for prognostic genes between two groups.}
+\item{rho}{minimum fold changes for prognostic genes between two groups (Treatment/Control).}
 
 \item{showMessage}{Logical. Display the message in the estimation process.}
 
@@ -80,5 +80,6 @@ A function to estitamete the sample size based on read counts and dispersion dis
 \examples{
 #Please note here the parameter repNumber was very small (5) to make the example code faster.
 #We suggest repNumber should be at least set as 100 in real analysis.
-sample_size_distribution(power=0.8,f=0.01,distributionObject="TCGA_READ",repNumber=5,showMessage=TRUE)
+sample_size_distribution(power=0.8,f=0.01,distributionObject="TCGA_READ",repNumber=5,
+showMessage=TRUE)
 }

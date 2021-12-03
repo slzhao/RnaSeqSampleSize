@@ -37,7 +37,7 @@ est_power_distribution(
 
 \item{w}{Ratio of normalization factors between two groups.}
 
-\item{rho}{minimum fold changes for prognostic genes between two groups.}
+\item{rho}{minimum fold changes for prognostic genes between two groups (Treatment/Control).}
 
 \item{repNumber}{Number of genes used in estimation of read counts and dispersion distribution.}
 
@@ -78,12 +78,17 @@ A function to estitamete the power for differential expression analysis of RNA-s
 #Please note here the parameter repNumber was very small (2) to make the example code faster.
 #We suggest repNumber should be at least set as 100 in real analysis.
 est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",repNumber=2)
-#Power estimation based on some interested genes. We use storeProcess=TRUE to return the details for all selected genes.
-selectedGenes<-names(TCGA_READ$pseudo.counts.mean)[c(1,3,5,7,9,12:30)]
-powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",selectedGenes=selectedGenes,minAveCount=1,storeProcess=TRUE,repNumber=2)
+#Power estimation based on some interested genes. We use storeProcess=TRUE to return the 
+#details for all selected genes.
+selectedGenes<-c("A1BG","A2BP1","A2M","A4GALT","AAAS")
+powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",
+selectedGenes=selectedGenes,minAveCount=1,storeProcess=TRUE,repNumber=2)
 str(powerDistribution)
 mean(powerDistribution$power)
 #Power estimation based on genes in interested pathway
-powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",pathway="00010",minAveCount=1,storeProcess=TRUE,repNumber=2)
+\dontrun{
+powerDistribution<-est_power_distribution(n=65,f=0.01,rho=2,distributionObject="TCGA_READ",
+pathway="00010",minAveCount=1,storeProcess=TRUE,repNumber=2)
 mean(powerDistribution$power)
+}
 }

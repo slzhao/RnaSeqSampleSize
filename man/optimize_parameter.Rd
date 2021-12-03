@@ -40,7 +40,9 @@ A function to optimize the parameters in power or sample size estimation.
 }
 \examples{
 #Optimization for power estimation
-result<-optimize_parameter(fun=est_power,opt1="n",opt2="lambda0",opt1Value=c(3,5,10,15,20),opt2Value=c(1:5,10,20))
+result<-optimize_parameter(fun=est_power,opt1="n",opt2="lambda0",opt1Value=c(3,5,10,15,20),
+opt2Value=c(1:5,10,20))
 #Optimization for sample size estimation
-result<-optimize_parameter(fun=sample_size,opt1="lambda0",opt2="phi0",opt1Value=c(1,3),opt2Value=c(1.5,2),power=0.8)
+result<-optimize_parameter(fun=sample_size,opt1="lambda0",opt2="phi0",opt1Value=c(1,3),
+opt2Value=c(1.5,2),power=0.8)
 }
