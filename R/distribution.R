@@ -75,20 +75,20 @@ est_count_dispersion<-function(counts,group=rep(1,NCOL(counts)),subSampleNum=20,
 ##' pathway="00010",minAveCount=1,storeProcess=TRUE,repNumber=2)
 ##' mean(powerDistribution$power)
 ##' }
-est_power_distribution<-function(n,f=0.1,m=10000,m1=100, w=1, rho=2,repNumber=100,dispersionDigits=1,distributionObject,libSize,minAveCount=5,maxAveCount=2000,selectedGenes,pathway,species="hsa",storeProcess=FALSE,countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE,removedGene0Power=TRUE) {
+est_power_distribution<-function(n,f=0.1,m=10000,m1=100, w=1,k=1, rho=2,repNumber=100,dispersionDigits=1,distributionObject,libSize,minAveCount=5,maxAveCount=2000,selectedGenes,pathway,species="hsa",storeProcess=FALSE,countFilterInRawDistribution=TRUE,selectedGeneFilterByCount=FALSE,removedGene0Power=TRUE) {
 	temp<-selectDistribution(distributionObject=distributionObject,libSize=libSize,repNumber=repNumber,dispersionDigits=dispersionDigits,minAveCount=minAveCount,maxAveCount=maxAveCount,selectedGenes=selectedGenes,pathway=pathway,species=species,countFilterInRawDistribution=countFilterInRawDistribution,
 			selectedGeneFilterByCount=selectedGeneFilterByCount,removedGene0Power=removedGene0Power)
 	dispersionDistribution<-temp$selectedDispersion
 	countDistribution<-temp$selectedCount
 	
-	#determin alpha from most consertive power
+	#determin alpha from most conservative power
 	phi0<-temp$maxDispersionDistribution
 	lambda0<-max(min(countDistribution),1)
-	leastPower<-est_power(n=n, w=w, rho=rho,lambda0=lambda0,phi0=phi0)
+	leastPower<-est_power(n=n, w=w,k=k, rho=rho,lambda0=lambda0,phi0=phi0)
 	alpha<-leastPower*m1*f/((m-m1)*(1-f))
 
 	#power distribution
-	powerDistribution<-est_power_distribution_root(n=n,alpha=alpha,w=w, rho=rho,dispersionDistribution=dispersionDistribution,countDistribution=countDistribution)
+	powerDistribution<-est_power_distribution_root(n=n,alpha=alpha,w=w,k=k, rho=rho,dispersionDistribution=dispersionDistribution,countDistribution=countDistribution)
 
 	#Add removed genes as 0 power
 	if (removedGene0Power) {
@@ -107,11 +107,11 @@ est_power_distribution_root<-function(n,alpha=0.05, w=1,k=1, rho=2, error=0.001,
 	#power distribution
 	powerDistribution<-NULL
 	for (dispersion in unique(dispersionDistribution)) {
-		model<-generateModel(lambda0=c(1,5,10),n=n, w=w, rho=rho, phi0=dispersion,alpha=alpha, error=error,showMessage=FALSE)
+		model<-generateModel(lambda0=c(1,5,10),n=n, w=w,k=k, rho=rho, phi0=dispersion,alpha=alpha, error=error,showMessage=FALSE)
 		countDistributionTable<-table(countDistribution[which(dispersionDistribution==dispersion)])
 		powerTable<-NULL
 		for (count in as.integer(names(countDistributionTable))) {
-			powerTable<-c(powerTable,modelPower(model,n=n,w=w,lambda0=count,rho=rho, phi0=dispersion))
+			powerTable<-c(powerTable,modelPower(model,n=n,w=w,k=k,lambda0=count,rho=rho, phi0=dispersion))
 		}
 		powerDistribution<-c(powerDistribution,rep(powerTable,countDistributionTable))
 	}
@@ -209,7 +209,6 @@ selectDistribution<-function(distributionObject,libSize,repNumber,dispersionDigi
 	} else {
 		selectedGenes<-sample(genesLargerThanMinCount,repNumber)
 		maxDispersionDistribution<-max(dispersionDistribution[selectedGenes])
-		print(5)
 	}
 
 	#browser()

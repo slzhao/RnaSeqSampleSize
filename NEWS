@@ -1,6 +1,9 @@
-CHANGES IN VERSION 2.5.1 2020-12-02
+CHANGES IN VERSION 2.5.1 2021-12-02
 ------------------------------------
 
+NEW FEATURES
+    o Support defining ratio of sample size between two groups by parameter k
+    
 BUG FIXES
 
     o Change website URL in vignette

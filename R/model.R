@@ -9,7 +9,7 @@ est_power_model<-function(n, w=1,k=1, rho=2, lambda0=5, phi0=1, beta=0.2, alpha=
 	return(a-(1-beta))
 }
 
-modelPower<-function(model, n=10,w=1, rho=2, lambda0=5, phi0=1, error=0.001) {
+modelPower<-function(model, n=10,w=1,k=1, rho=2, lambda0=5, phi0=1, error=0.001) {
 	mu0<-lambda0
 	mu1<-mu0*(rho*w)
 	phi1<-phi0
@@ -21,10 +21,10 @@ modelPower<-function(model, n=10,w=1, rho=2, lambda0=5, phi0=1, error=0.001) {
 	a<-0
 	q0_u<-qnbinom(1-error, size=n/phi0, mu=n*mu0)
 	q0_l<-qnbinom(error, size=n/phi0, mu=n*mu0)
-	q1_u<-qnbinom(1-error, size=n/phi1, mu=n*mu1)
-	q1_l<-qnbinom(error, size=n/phi1, mu=n*mu1)
+	q1_u<-qnbinom(1-error, size=k*n/phi1, mu=k*n*mu1)
+	q1_l<-qnbinom(error, size=k*n/phi1, mu=k*n*mu1)
 #	dnbinomQ1<-dnbinom(q1_l:q1_u, mu=(n*mu1), size=n/phi_1)
-	pnbinomQ1<-pnbinom((q1_l-1):q1_u, mu=(n*mu1), size=n/phi1)
+	pnbinomQ1<-pnbinom((q1_l-1):q1_u, mu=(k*n*mu1), size=k*n/phi1)
 	dnbinomQ0<-dnbinom(q0_l:q0_u, mu=(n*mu0), size=n/phi0)
 #	pnbinomQ0<-pnbinom((q0_l-1):q0_u, mu=(n*mu0), size=n/phi_0)
 	aNRow<-q1_u-q1_l+1

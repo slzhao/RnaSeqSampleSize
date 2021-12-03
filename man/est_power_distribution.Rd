@@ -10,6 +10,7 @@ est_power_distribution(
   m = 10000,
   m1 = 100,
   w = 1,
+  k = 1,
   rho = 2,
   repNumber = 100,
   dispersionDigits = 1,
@@ -36,6 +37,8 @@ est_power_distribution(
 \item{m1}{Expected number of prognostic genes.}
 
 \item{w}{Ratio of normalization factors between two groups.}
+
+\item{k}{Ratio of sample size between two groups (Treatment/Control).}
 
 \item{rho}{minimum fold changes for prognostic genes between two groups (Treatment/Control).}
 
