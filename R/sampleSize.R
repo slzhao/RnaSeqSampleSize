@@ -37,8 +37,12 @@ sample_size<-function(power=0.8,m=20000, m1=200, f=0.1, k=1,w=1, rho=2, lambda0=
 	n_w<-( ( z_alpha + z_beta )^2* (1 + rho/w +phi0*lambda0*(1+rho^2)) )/ ( (rho-1)^2*lambda0 )
 	
 	start.point<-1
-	end.point<-round(n_w)+30
-
+	if (k!=1) {
+		end.point=round(max(n_w*k,n_w*(1/k)))+30
+	} else {
+		end.point<-round(n_w)+30
+	}
+	
 	if (lambda0>=lambda0AppCut) {
 		p1<-est_power_model(n=start.point,w=w,k=k, rho=rho, lambda0=lambda0, phi0=phi0, beta=beta, alpha=alpha_star)
 	} else {
