@@ -47,7 +47,7 @@ Sample size estimation is the most important issue in the design of RNA sequenci
 To solve these issues, we developed a sample size estimation method based on the distributions of gene read counts and dispersions from real data. Datasets from the user's preliminary experiments or the Cancer Genome Atlas (TCGA) can be used as reference. The read counts and their related dispersions will be selected randomly from the reference based on their distributions, and from that, the power and sample size will be estimated and summarized.
 
 \section{User friendly web interface}
-A user friendly web interface for \Biocpkg{RnaSeqSampleSize} package is provided at \url{http://cqs.mc.vanderbilt.edu/shiny/RnaSeqSampleSize/}. Most of the functions in Examples section can be performed in this website.
+A user friendly web interface for \Biocpkg{RnaSeqSampleSize} package is provided at \url{https://cqs.app.vumc.org/shiny/RnaSeqSampleSize/}. Most of the functions in Examples section can be performed in this website.
 
 \section{Examples}
 First we will load the \Biocpkg{RnaSeqSampleSize} package.
