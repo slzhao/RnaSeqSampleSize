@@ -17,7 +17,7 @@ To solve these issues, we developed a sample size estimation method based on the
 
 # User friendly web interface
 
-A user friendly web interface for RnaSeqSampleSize package is provided at [CQS website](http://cqs.mc.vanderbilt.edu/shiny/RnaSeqSampleSize/). Most of the features in Example section can be found in this website.
+A user friendly web interface for RnaSeqSampleSize package is provided at [CQS website](https://cqs.app.vumc.org/shiny/RnaSeqSampleSize/). Most of the features in Example section can be found in this website.
 
 
 <a name="download"/>
