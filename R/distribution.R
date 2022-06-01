@@ -84,7 +84,7 @@ est_power_distribution<-function(n,f=0.1,m=10000,m1=100, w=1,k=1, rho=2,repNumbe
 	#determin alpha from most conservative power
 	phi0<-temp$maxDispersionDistribution
 	lambda0<-max(min(countDistribution),1)
-	leastPower<-est_power(n=n, w=w,k=k, rho=rho,lambda0=lambda0,phi0=phi0)
+	leastPower<-est_power(n=n, w=w,k=k, rho=rho,lambda0=lambda0,phi0=phi0,f=f)
 	alpha<-leastPower*m1*f/((m-m1)*(1-f))
 
 	#power distribution
